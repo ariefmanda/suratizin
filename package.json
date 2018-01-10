@@ -1,0 +1,18 @@
+{
+  "name": "suratIzin",
+  "version": "1.0.0",
+  "main": "app.js",
+  "repository": "https://github.com/ariefmanda/suratIzin.git",
+  "author": "ariefmanda <arief.manda57@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "moment": "^2.20.1",
+    "pg": "^7.4.1",
+    "sequelize": "^4.30.2"
+  }
+}
