@@ -1,0 +1,12 @@
+const express = require('express')
+const app = express()
+const parse = require('body-parser')
+const session = require('express-session')
+const cookie = require('cookie-parser')
+app.use(parse.urlencoded({extended:false}))
+app.use(parse.json())
+app.set('view engine', 'ejs')
+app.set('views', './views')
+app.listen(process.env.PORT || 3000, function(req, res) {
+    console.log('aplikasi ini lewat port 3000')
+})
