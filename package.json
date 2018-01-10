@@ -5,6 +5,9 @@
   "repository": "https://github.com/ariefmanda/suratIzin.git",
   "author": "ariefmanda <arief.manda57@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "NODE_ENV=production node app.js"
+  },
   "dependencies": {
     "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",
