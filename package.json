@@ -6,7 +6,9 @@
   "author": "ariefmanda <arief.manda57@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "NODE_ENV=production node app.js"
+    "start": "NODE_ENV=production node app.js",
+    "arief": "NODE_ENV=development_arief node --inspect app.js",
+    "eksa": "NODE_ENV=development_eksa nodemon --inspect app.js"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
