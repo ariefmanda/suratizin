@@ -1,11 +1,4 @@
 {
-  "development_arief": {
-    "username": "postgres",
-    "password": null,
-    "database": "suratizin",
-    "host": "127.0.0.1",
-    "dialect": "postgres"
-  },
   "development_eksa": {
     "username": "postgres",
     "password": "p4ssw0rd",
@@ -13,9 +6,16 @@
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
-  "production": {
+  "development_arief": {
     "username": "postgres",
-    "password": "p4ssw0rd",
+    "password": null,
+    "database": "suratizin",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
     "database": "suratizin",
     "host": "127.0.0.1",
     "dialect": "postgres"
