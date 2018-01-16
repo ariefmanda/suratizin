@@ -21,8 +21,8 @@
   "devDependencies": {},
   "scripts": {
     "start": "NODE_ENV=production node app.js",
-    "eksa": "NODE_ENV=development_eksa nodemon --inspect app.js",
-    "arief": "NODE_ENV=development_arief nodemon --inspect app.js",
+    "eksa": "NODE_ENV=development nodemon --inspect app.js",
+    "arief": "NODE_ENV=development nodemon --inspect app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
