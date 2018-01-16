@@ -1,17 +1,17 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('companies', {
+    return queryInterface.createTable('Companies', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      PartnerId: {
+      AdminId: {
         type: Sequelize.INTEGER
       },
-      AdminId: {
+      UserId: {
         type: Sequelize.INTEGER
       },
       name: {
@@ -88,6 +88,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('companies');
+    return queryInterface.dropTable('Companies');
   }
 };

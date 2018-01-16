@@ -1,8 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var company = sequelize.define('company', {
-    PartnerId: DataTypes.INTEGER,
+  var Company = sequelize.define('Company', {
     AdminId: DataTypes.INTEGER,
+    UserId: DataTypes.INTEGER,
     name: DataTypes.STRING,
     logo: DataTypes.STRING,
     category: DataTypes.INTEGER,
@@ -25,5 +25,5 @@ module.exports = (sequelize, DataTypes) => {
     photo_valid_bill: DataTypes.STRING,
     validation: DataTypes.INTEGER
   });
-  return company;
+  return Company;
 };

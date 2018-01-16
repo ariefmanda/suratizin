@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var admin = sequelize.define('admin', {
+  var Admin = sequelize.define('Admin', {
     name: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
@@ -12,5 +12,5 @@ module.exports = (sequelize, DataTypes) => {
     reset_token: DataTypes.STRING,
     reset_expired: DataTypes.DATE
   });
-  return admin;
+  return Admin;
 };

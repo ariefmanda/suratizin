@@ -1,8 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var propose = sequelize.define('propose', {
+  var Propose = sequelize.define('Propose', {
     CompanyId: DataTypes.INTEGER,
-    CustomerId: DataTypes.INTEGER,
+    UserId: DataTypes.INTEGER,
     RequestId: DataTypes.INTEGER,
     price: DataTypes.FLOAT,
     negotiable: DataTypes.INTEGER,
@@ -10,5 +10,5 @@ module.exports = (sequelize, DataTypes) => {
     info_partner: DataTypes.TEXT,
     status: DataTypes.INTEGER
   });
-  return propose;
+  return Propose;
 };

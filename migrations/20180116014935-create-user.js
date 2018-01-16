@@ -1,48 +1,48 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('settings', {
+    return queryInterface.createTable('Users', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      app_name: {
-        type: Sequelize.STRING
-      },
-      app_logo: {
-        type: Sequelize.STRING
-      },
-      app_favicon: {
-        type: Sequelize.STRING
-      },
-      app_copyright: {
-        type: Sequelize.STRING
-      },
-      app_theme: {
-        type: Sequelize.STRING
-      },
-      mail_host: {
-        type: Sequelize.STRING
-      },
-      mail_port: {
+      AdminId: {
         type: Sequelize.INTEGER
       },
-      mail_secure: {
+      name: {
+        type: Sequelize.STRING
+      },
+      email: {
+        type: Sequelize.STRING
+      },
+      password: {
+        type: Sequelize.STRING
+      },
+      role: {
         type: Sequelize.INTEGER
       },
-      mail_username: {
+      gender: {
+        type: Sequelize.INTEGER
+      },
+      handphone: {
         type: Sequelize.STRING
       },
-      mail_password: {
+      address: {
+        type: Sequelize.TEXT
+      },
+      photo: {
         type: Sequelize.STRING
       },
-      sms_apikey: {
+      reset_token: {
         type: Sequelize.STRING
       },
-      sms_apisecret: {
-        type: Sequelize.STRING
+      reset_expired: {
+        type: Sequelize.DATE
+      },
+      status: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -55,6 +55,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('settings');
+    return queryInterface.dropTable('Users');
   }
 };

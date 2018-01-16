@@ -1,42 +1,45 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('admins', {
+    return queryInterface.createTable('Requests', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
-        type: Sequelize.STRING
-      },
-      email: {
-        type: Sequelize.STRING
-      },
-      password: {
-        type: Sequelize.STRING
-      },
-      role: {
+      UserId: {
         type: Sequelize.INTEGER
       },
-      gender: {
+      location_province: {
         type: Sequelize.INTEGER
       },
-      handphone: {
+      location_city: {
         type: Sequelize.STRING
       },
-      address: {
+      necessities: {
+        type: Sequelize.STRING
+      },
+      photo_building: {
+        type: Sequelize.STRING
+      },
+      photo_plan: {
+        type: Sequelize.STRING
+      },
+      attachment: {
+        type: Sequelize.STRING
+      },
+      needed_date: {
+        type: Sequelize.DATE
+      },
+      remark: {
         type: Sequelize.TEXT
       },
-      photo: {
-        type: Sequelize.STRING
+      payment_method: {
+        type: Sequelize.INTEGER
       },
-      reset_token: {
-        type: Sequelize.STRING
-      },
-      reset_expired: {
-        type: Sequelize.DATE
+      status: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -49,6 +52,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('admins');
+    return queryInterface.dropTable('Requests');
   }
 };

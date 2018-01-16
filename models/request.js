@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var request = sequelize.define('request', {
-    CustomerId: DataTypes.INTEGER,
+  var Request = sequelize.define('Request', {
+    UserId: DataTypes.INTEGER,
     location_province: DataTypes.INTEGER,
     location_city: DataTypes.STRING,
     necessities: DataTypes.STRING,
@@ -13,5 +13,5 @@ module.exports = (sequelize, DataTypes) => {
     payment_method: DataTypes.INTEGER,
     status: DataTypes.INTEGER
   });
-  return request;
+  return Request;
 };
