@@ -51,7 +51,9 @@
 											<h5>&nbsp;</h5>
 											<div class="callout callout-success" style="margin-bottom: 0!important;">
 									      <h4><i class="fa fa-info"></i>&nbsp;&nbsp;&nbsp;Selamat! Anda telah bergabung dengan <%= setting.app_name %></h4>
-												Silahkan cek email Anda (<%= user.email %>) untuk mengaktifkan akun Anda. Terima kasih
+												Silahkan cek email Anda (<%= user.email %>) untuk mengaktifkan akun Anda.<br>
+												Kemudian login sesuai akun Anda untuk update profil Anda.<br><br>
+												Terima kasih
 									    </div>
 										<% } else { %>
 											<div class="login-logo">
@@ -62,7 +64,7 @@
 		                    <form action="/login/add" method="post">
 		                      <div class="form-group has-feedback">
 		                        <select name="role" class="form-control">
-		                          <option value="2">Mitra Jasa Kami</option>
+		                          <option value="2">Mitra Jasa</option>
 		                          <option value="4">Pencari Jasa</option>
 		                        </select>
 		                      </div>
