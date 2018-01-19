@@ -20,13 +20,13 @@ Router.post('/verification', (req, res) => {
   .then((admin) => {
     if (admin == null) {
       message_login = 'Incorrect Username or Password !!'
-      res.redirect('/login')
+      res.redirect('admin/login')
     } else {
-      console.log(req.body);
       admin.check_password(req.body.password, (isMatch) => {
         if (isMatch) {
           req.session.isLogin = true
           req.session.user = admin
+
           // let objLog = {
           //   UserId      : user.id,
           //   username    : user.username,
@@ -36,6 +36,7 @@ Router.post('/verification', (req, res) => {
           // }
           // Model.Log.create(objLog)
           res.redirect('/admin')
+          message_login=null
         } else {
           req.session.isLogin = false //>>> ganti false
           req.session.admin = undefined //>> ganti undefines

@@ -22,7 +22,7 @@ app.use(session({ secret: 'surat-izin-2018', cookie: { maxAge: 3600000 } })) //3
 
 app.use('/', require('./routes/index'))
 app.use('/login', require('./routes/login'))
-app.use('/register', require('./routes/register'))
+app.use('/activation', require('./routes/activation'))
 
 app.use('/admin/login', require('./routes/admin/login'))
 app.use('/admin/logout', require('./routes/admin/logout'))
@@ -37,6 +37,6 @@ app.use((req, res, next) => {
 app.use('/admin',authSession.checkSession, require('./routes/admin/index'))
 
 // app.use('/', authSession.checkSession, require('./routes/index'))
-app.use('/admin', require('./routes/admin/index'))
+app.use('/admin',authSession.checkSession, require('./routes/admin/index'))
 
 app.listen(port, () => console.log(`Sundul gan on http://localhost:${port} !!`))

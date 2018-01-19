@@ -2,7 +2,6 @@
 const getRole   = require('../helpers/getRole')
 const library   = require('../helpers/library')
 const Op        = require('sequelize').Op
-
 module.exports = (sequelize, DataTypes) => {
   var Admin = sequelize.define('Admin', {
     name: {
@@ -121,7 +120,6 @@ module.exports = (sequelize, DataTypes) => {
       callback(false)
     }
   }
-
   Admin.prototype.getRole = function() {
     return getRole(this.role)
   }
@@ -129,5 +127,6 @@ module.exports = (sequelize, DataTypes) => {
   Admin.associate = function(models) {
     Admin.hasMany(models.Request)
   }
+
   return Admin;
 };
