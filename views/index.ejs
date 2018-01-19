@@ -4,21 +4,14 @@
 	<% include partials/metahead %>
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini fixed">
+<body class="hold-transition <%= setting.app_publictheme %> layout-top-nav fixed">
   <div class="wrapper">
-    <% include partials/header %>
-  	<% include partials/sidebar %>
+		<% include partials/menutop %>
 
 		<div class="content-wrapper">
-			<% include partials/breadcrumb %>
+			<% include home %>
+	  </div>
 
-      <!-- Main content -->
-      <section class="content">
-			  <% include dashboard %>
-      </section>
-      <!-- /.content -->
-
-		</div>
     <% include partials/footer %>
   </div>
 

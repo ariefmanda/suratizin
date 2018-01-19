@@ -1,29 +1,38 @@
 {
   "name": "suratizin",
   "version": "1.0.0",
+  "description": "",
   "main": "app.js",
-  "repository": "https://github.com/ariefmanda/suratIzin.git",
-  "author": "ariefmanda <arief.manda57@gmail.com>",
-  "license": "MIT",
-  "scripts": {
-    "start": "NODE_ENV=production node app.js",
-    "arief": "NODE_ENV=development_arief node --inspect app.js",
-    "eksa": "NODE_ENV=development_eksa nodemon --inspect app.js"
-  },
   "dependencies": {
     "body-parser": "^1.18.2",
-    "cookie-parser": "^1.4.3",
     "crypto": "^1.0.1",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "express-favicon": "^2.0.0",
     "express-session": "^1.15.6",
-    "html-pdf": "^2.2.0",
     "moment": "^2.20.1",
     "multer": "^1.3.0",
     "nexmo": "^2.1.1",
     "nodemailer": "^4.4.1",
     "pg": "^7.4.1",
-    "sequelize": "^4.30.2"
-  }
+    "sequelize": "^4.31.1",
+    "sequelize-cli": "^3.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "NODE_ENV=production node app.js",
+    "eksa": "NODE_ENV=development nodemon --inspect app.js",
+    "arief": "NODE_ENV=development nodemon --inspect app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ariefmanda/suratizin.git"
+  },
+  "author": "ariefmanda <arief.manda57@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ariefmanda/suratizin/issues"
+  },
+  "homepage": "https://github.com/ariefmanda/suratizin#readme"
 }

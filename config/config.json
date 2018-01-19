@@ -1,21 +1,14 @@
 {
-  "development_arief": {
-    "username": "postgres",
-    "password": "admin",
-    "database": "suratizin",
-    "host": "127.0.0.1",
-    "dialect": "postgres"
-  },
-  "development_eksa": {
-    "username": "postgres",
-    "password": "p4ssw0rd",
-    "database": "suratizin",
-    "host": "127.0.0.1",
+  "development": {
+    "username": "yurbzxna",
+    "password": "zN70oIg9earLFxoTDQvQkEkLEX3B36fC",
+    "database": "yurbzxna",
+    "host": "baasu.db.elephantsql.com",
     "dialect": "postgres"
   },
   "production": {
-    "username": "postgres",
-    "password": "p4ssw0rd",
+    "username": "root",
+    "password": null,
     "database": "suratizin",
     "host": "127.0.0.1",
     "dialect": "postgres"
