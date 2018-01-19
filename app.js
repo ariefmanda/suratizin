@@ -25,14 +25,16 @@ app.use('/login', require('./routes/login'))
 app.use('/register', require('./routes/register'))
 
 app.use('/admin/login', require('./routes/admin/login'))
-// app.use('/logout', require('./routes/logout'))
-// app.use('/reset', require('./routes/reset'))
+app.use('/admin/logout', require('./routes/admin/logout'))
+app.use('/forgot', require('./routes/admin/forgot'))
 // app.use('/reset/:token', require('./routes/reset'))
 
 app.use((req, res, next) => {
   res.locals.userSession = req.session.user
   next()
 })
+
+app.use('/admin',authSession.checkSession, require('./routes/admin/index'))
 
 // app.use('/', authSession.checkSession, require('./routes/index'))
 app.use('/admin', require('./routes/admin/index'))

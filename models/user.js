@@ -98,24 +98,13 @@ module.exports = (sequelize, DataTypes) => {
       beforeUpdate: (user, options) => {
         user.password = library.encrypt(user.password)
       }
-    },
-    instanceMethods: {
-      comparePassword: function (userPassword, callback) {
-        let cryStr = crypKey.update(userPassword, 'utf8', 'hex')
-        cryStr += crypKey.update.final('hex')
-        if (cryStr == this.password) {
-          callback(true)
-        }
-      }
     }
   });
 
   User.prototype.check_password = function (userPassword, callback) {
-    let cryStr = crypKey.update(userPassword, 'utf8', 'hex')
-    cryStr += crypKey.update.final('hex')
-    if (cryStr == this.password) {
+    if(library.comparePassword(password,this.password)){
       callback(true)
-    } else {
+    }else{
       callback(false)
     }
   }
