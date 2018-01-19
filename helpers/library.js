@@ -18,6 +18,10 @@ exports.decrypt = function(text) {
   return dec;
 }
 
+exports.comparePassword = function(password,originPassword){
+  return encrypt(password)==originPassword
+}
+
 exports.randomValueBase64 = function(len) {
   return crypto.randomBytes(Math.ceil(len * 3 / 4))
         .toString('base64')   // convert to base64 format
