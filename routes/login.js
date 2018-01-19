@@ -69,7 +69,7 @@ Router.post('/add', (req, res) => {
           resolve(info)
         })
         .catch(function(err) {
-          message += err
+          info = err
           reject(err)
         })
       })
@@ -84,12 +84,12 @@ Router.post('/add', (req, res) => {
           }
         })
         .then(function(user) {
-          objAlert = message.success(info)
+          // objAlert = message.success(info)
           res.redirect(`/login/register/${user.id}`)
         })
       })
       .catch(function(err) {
-        objAlert = message.error(err)
+        // objAlert = message.error(err)
         res.redirect('/login')
       })
     })
