@@ -1,5 +1,34 @@
 'uses strict'
-const moment  = require('moment')
+const moment    = require('moment')
+const crypto    = require('crypto')
+const algorithm = 'aes192'
+const password  = 'surat-izin-2018'
+
+exports.encrypt = function(text) {
+  let cipher  = crypto.createCipher(algorithm, password)
+  let crypted = cipher.update(text, 'utf8', 'hex')
+  crypted += cipher.final('hex');
+  return crypted;
+}
+
+exports.decrypt = function(text) {
+  let decipher = crypto.createDecipher(algorithm, password)
+  let dec      = decipher.update(text, 'hex', 'utf8')
+  dec += decipher.final('utf8');
+  return dec;
+}
+
+exports.comparePassword = function(password,originPassword){
+  return encrypt(password)==originPassword
+}
+
+exports.randomValueBase64 = function(len) {
+  return crypto.randomBytes(Math.ceil(len * 3 / 4))
+        .toString('base64')   // convert to base64 format
+        .slice(0, len)        // return required number of characters
+        .replace(/\+/g, '0')  // replace '+' with '0'
+        .replace(/\//g, '0'); // replace '/' with '0'
+}
 
 exports.parseDate = function(str) {
   if (str == '') {
