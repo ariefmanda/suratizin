@@ -35,6 +35,6 @@ app.use((req, res, next) => {
 })
 
 // app.use('/', authSession.checkSession, require('./routes/index'))
-app.use('/admin', require('./routes/admin/index'))
+app.use('/admin',authSession.checkSession, require('./routes/admin/index'))
 
 app.listen(port, () => console.log(`Sundul gan on http://localhost:${port} !!`))

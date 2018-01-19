@@ -1,5 +1,4 @@
 function checkSession(req, res, next) {
-  // console.log('====', req.originalUrl);
   if (req.session.isLogin) {
     next(res.path)
   } else {
