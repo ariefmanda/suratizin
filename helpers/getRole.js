@@ -1,12 +1,16 @@
 function getRole(level) {
-  if (level == 1) {
+  if (level == 0) {
     return 'Superadmin'
-  } else if (level == 2) {
-    return 'Investor'
-  } else if (level == 3) {
+  } else if (level == 1) {
     return 'Admin'
+  } else if (level == 2) {
+    return 'Mitra Jasa'
+  } else if (level == 3) {
+    return 'Mitra Jasa VIP'
   } else if (level == 4) {
-    return 'Customer'
+    return 'Pencari Jasa'
+  } else if (level == 5) {
+    return 'Pencari Jasa VIP'
   }
 }
 

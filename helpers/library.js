@@ -4,18 +4,18 @@ const crypto    = require('crypto')
 const algorithm = 'aes192'
 const password  = 'surat-izin-2018'
 
-exports.encrypt = function(text) {
-  let cipher  = crypto.createCipher(algorithm, password)
-  let crypted = cipher.update(text, 'utf8', 'hex')
-  crypted += cipher.final('hex');
-  return crypted;
-}
-
-let encrypt = function(text) {
+function encrypt(text) {
   let cipher  = crypto.createCipher(algorithm, password)
   let crypted = cipher.update(text, 'utf8', 'hex')
   crypted += cipher.final('hex');
   console.log(crypted);
+  return crypted;
+}
+
+exports.encrypt = function(text) {
+  let cipher  = crypto.createCipher(algorithm, password)
+  let crypted = cipher.update(text, 'utf8', 'hex')
+  crypted += cipher.final('hex');
   return crypted;
 }
 
@@ -26,8 +26,8 @@ exports.decrypt = function(text) {
   return dec;
 }
 
-exports.comparePassword = function(password,originPassword){
-  return encrypt(password)==originPassword
+exports.comparePassword = function(password, originPassword){
+  return encrypt(password) == originPassword
 }
 
 exports.randomValueBase64 = function(len) {
@@ -36,6 +36,13 @@ exports.randomValueBase64 = function(len) {
         .slice(0, len)        // return required number of characters
         .replace(/\+/g, '0')  // replace '+' with '0'
         .replace(/\//g, '0'); // replace '/' with '0'
+}
+
+exports.formatLocalDate = function(str) {
+  if (str == '') {
+    return ''
+  }
+  return moment(str).format('D-M-YYYY')
 }
 
 exports.parseDate = function(str) {

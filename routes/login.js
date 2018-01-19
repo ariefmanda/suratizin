@@ -14,10 +14,12 @@ Router.get('/', (req, res) => {
   Model.Setting.findAll()
   .then(function(setting) {
     res.render('./login', {
-      title     : title,
-      setting   : setting[0],
-      user      : null,
-      alert     : objAlert,
+      title       : title,
+      setting     : setting[0],
+      user        : null,
+      alert       : objAlert,
+      library     : library,
+      userSession : req.session.user,
     })
     objAlert = null
   })
@@ -89,8 +91,14 @@ Router.post('/add', (req, res) => {
         })
       })
       .catch(function(err) {
-        // objAlert = message.error(err)
-        res.redirect('/login')
+        res.render('./login', {
+          title       : title,
+          setting     : setting[0],
+          user        : null,
+          userSession : req.session.user,
+          alert       : message.error(err.message),
+        })
+        objAlert = null
       })
     })
   }
@@ -102,61 +110,85 @@ Router.get('/register/:id', (req, res) => {
     Model.User.findById(req.params.id)
     .then(function(user) {
       res.render('./login', {
-        title     : title,
-        setting   : setting[0],
-        user      : user,
-        alert     : objAlert,
+        title       : title,
+        setting     : setting[0],
+        user        : user,
+        userSession : req.session.user,
+        alert       : objAlert,
       })
       objAlert = null
     })
   })
 })
 
-Router.post('/verification', (req, res) => {
-  Model.User.findOne({
-    where: {
-      username: req.body.username,
-    }
-  })
-  .then((user) => {
-    if (user == null) {
-      message_login = 'Incorrect Username or Password !!'
-      res.redirect('/login')
-    } else {
-      user.check_password(req.body.password, (isMatch) => {
-        if (isMatch) {
-          req.session.isLogin = true
-          req.session.user = user
-          let objLog = {
-            UserId      : user.id,
-            username    : user.username,
-            ip_address  : getClientIp(req),
-            last_login  : Date.now(),
-            status      : 'success',
+Router.post('/auth', (req, res) => {
+  Model.Setting.findAll()
+  .then(function(setting) {
+    Model.User.findOne({
+      where: {
+        email: req.body.email,
+      }
+    })
+    .then((user) => {
+      if (user == null) {
+        res.render('./login', {
+          title       : title,
+          setting     : setting[0],
+          user        : user,
+          userSession : req.session.user,
+          alert       : message.error('Username atau Password tidak sesuai !!'),
+        })
+        objAlert = null
+      } else {
+        user.check_password(req.body.password, (isMatch) => {
+          if (isMatch) {
+            req.session.isLogin    = true
+            req.session.user       = user
+            res.locals.userSession = req.session.user
+            // let objLog = {
+            //   UserId      : user.id,
+            //   username    : user.username,
+            //   ip_address  : getClientIp(req),
+            //   last_login  : Date.now(),
+            //   status      : 'success',
+            // }
+            // Model.Log.create(objLog)
+            res.redirect('/user')
+          } else {
+            req.session.isLogin    = false
+            req.session.user       = null
+            res.locals.userSession = null
+            // let objLog = {
+            //   UserId      : user.id,
+            //   username    : user.username,
+            //   ip_address  : getClientIp(req),
+            //   last_login  : Date.now(),
+            //   status      : 'danger',
+            //   information : message_login,
+            // }
+            // Model.Log.create(objLog)
+            res.render('./login', {
+              title       : title,
+              setting     : setting[0],
+              user        : null,
+              userSession : req.session.user,
+              alert       : message.error('Username atau Password tidak sesuai !!'),
+            })
+            objAlert = null
           }
-          Model.Log.create(objLog)
-          res.redirect('/')
-        } else {
-          req.session.isLogin = false //>>> ganti false
-          req.session.user = undefined //>> ganti undefines
-          message_login = 'Incorrect Username or Password !!'
-          let objLog = {
-            UserId      : user.id,
-            username    : user.username,
-            ip_address  : getClientIp(req),
-            last_login  : Date.now(),
-            status      : 'danger',
-            information : message_login,
-          }
-          Model.Log.create(objLog)
-          res.redirect('/login')
-        }
+        })
+      }
+    })
+    .catch((err) => {
+      res.render('./login', {
+        title       : title,
+        setting     : setting[0],
+        user        : null,
+        userSession : req.session.user,
+        alert       : message.error(err.message),
       })
-    }
-  })
-  .catch((err) => {
-    message_login = err.message
-    res.redirect('/login')
+      objAlert = null
+    })
   })
 })
 

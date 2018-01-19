@@ -16,31 +16,54 @@
           <div class="box box-widget widget-user">
             <div class="box-header"></div>
             <div class="box-body">
-
 								<div class="col-md-6">
 	                <div class="login-box">
-	              	  <div class="login-logo">
-	              	    <a href="/login"><b>Log</b>in</a>
+										<div id="login">
+		              	  <div class="login-logo">
+		              	    <a href="/login"><b>Log</b>in</a>
+		              	  </div>
+		              	  <div class="login-box-body">
+		              	    <p class="login-box-msg">Masuk sebagai otoritas Anda</p>
+		              	    <form action="/login/auth" method="post">
+		              	      <div class="form-group has-feedback">
+		              	        <input type="email" name="email" value="eksoct@yahoo.com" class="form-control" placeholder="Email" required>
+		              	        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+		              	      </div>
+		              	      <div class="form-group has-feedback">
+		              	        <input type="password" name="password" value="password" class="form-control" placeholder="Password" required>
+		              	        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+		              	      </div>
+		              	      <div class="row">
+		              	        <div class="col-xs-8"></div>
+		              	        <div class="col-xs-4">
+		              	          <button type="submit" class="btn btn-primary btn-block btn-flat">Masuk</button>
+		              	        </div>
+		              	      </div>
+		              	    </form>
+		              	    <a href="#" id="show_forgot">Lupa password ?</a><br>
+											</div>
 	              	  </div>
-	              	  <div class="login-box-body">
-	              	    <p class="login-box-msg">Masuk sebagai otoritas Anda</p>
-	              	    <form action="/login" method="post">
-	              	      <div class="form-group has-feedback">
-	              	        <input type="email" name="email" class="form-control" placeholder="Email" required>
-	              	        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-	              	      </div>
-	              	      <div class="form-group has-feedback">
-	              	        <input type="password" name="password" class="form-control" placeholder="Password" required>
-	              	        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-	              	      </div>
-	              	      <div class="row">
-	              	        <div class="col-xs-8"></div>
-	              	        <div class="col-xs-4">
-	              	          <button type="submit" class="btn btn-primary btn-block btn-flat">Masuk</button>
-	              	        </div>
-	              	      </div>
-	              	    </form>
-	              	    <a href="#">Lupa password ?</a><br>
+
+										<div id="forgot">
+		              	  <div class="login-logo">
+		              	    <a href="/login"><b>Lupa</b> Password</a>
+		              	  </div>
+		              	  <div class="login-box-body">
+		              	    <p class="login-box-msg">Masukkan email Anda untuk reset password</p>
+		              	    <form action="/forgot" method="post">
+		              	      <div class="form-group has-feedback">
+		              	        <input type="email" name="email" value="eksoct@yahoo.com" class="form-control" placeholder="Email" required>
+		              	        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+		              	      </div>
+		              	      <div class="row">
+		              	        <div class="col-xs-8"></div>
+		              	        <div class="col-xs-4">
+		              	          <button type="submit" class="btn btn-primary btn-block btn-flat">Reset</button>
+		              	        </div>
+		              	      </div>
+		              	    </form>
+		              	    <a href="#" id="show_login">Kembali ke Login ?</a><br>
+											</div>
 	              	  </div>
 	              	</div>
 	              </div>
@@ -95,13 +118,28 @@
 										<% } %>
 	              	</div>
 	              </div>
-
             </div>
             <div class="box-header"></div>
           </div>
         </div>
       </div>
 	  </div>
+
+		<script>
+			$(document).ready(function(){
+				$("#forgot").hide();
+
+			  $("#show_forgot").click(function(){
+		      $("#login").hide();
+					$("#forgot").show();
+			  });
+
+			  $("#show_login").click(function(){
+		      $("#login").show();
+					$("#forgot").hide();
+			  });
+			});
+		</script>
 
     <% include partials/footer %>
   </div>

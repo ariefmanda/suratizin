@@ -18,7 +18,7 @@ exports.reset_password = function(user, link) {
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Trippediacity - Reset Password</title>
+<title>SuratIzin[dot]Com - Reset Password</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body style="margin: 0; padding: 0;">
@@ -28,7 +28,7 @@ exports.reset_password = function(user, link) {
 				<table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border: 1px solid #cccccc; border-collapse: collapse;">
 					<tr>
 						<td align="center" bgcolor="#FF9933" style="padding: 20px 0 20px 0; color: #153643; font-size: 28px; font-weight: bold; font-family: Arial, sans-serif;">
-							<img src="${logo}" alt="Logo Trippediacity" style="display: block;" />
+							<img src="${logo}" alt="SuratIzin[dot]Com" style="display: block;" />
 						</td>
 					</tr>
 					<tr>
@@ -36,36 +36,38 @@ exports.reset_password = function(user, link) {
 							<table border="0" cellpadding="0" cellspacing="0" width="100%">
 								<tr>
 									<td style="color: #153643; font-family: Arial, sans-serif; font-size: 24px;" align="center">
-										<b>Hello ${user.name}</b>
+										<b>Hai ${user.name}</b>
 									</td>
 								</tr>
 								<tr>
 									<td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;" align="center">
-										We got your request to change your password !
+										<p>Kami menerima permintaan Anda untuk mengganti password Anda !</P>
+                    <p>Silahkan klik tombol / copy paste text link dibawah ini untuk reset password.</p>
 									</td>
 								</tr>
 								<tr>
 									<td style="padding: 10px 10px 10px 10px;" align="center">
-										<a href="${link}" style="color: #ffffff; text-decoration: none;">
+										<a href="http://${link}" style="color: #ffffff; text-decoration: none;">
 											<table border="0" cellpadding="0" cellspacing="0" style="border-width:1px; border-style:dashed;" width="50%">
 												<tr>
 													<td style="padding: 10px 0 10px 0; color: #FFFFFF; font-family: Arial, sans-serif; font-size: 16px; line-height: 22px;" bgcolor="#FF9933" align="center">
-														<b>RESET PASSWORD</b>
+                            <b>RESET PASSWORD</b>
 													</td>
 												</tr>
 											</table>
 										</a>
+                    <label style="font-size: 10px;">http://${link}</label>
 									</td>
 								</tr>
 								<tr>
 									<td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;" align="center">
-										Just so you know: You have 1 hours to pick your password.<br />
-										After that, you'll have to ask for a new one.
+										<p>Catatan: Anda hanya mempunyai batas waktu 1 jam untuk mengganti password baru.	Selebihnya, Anda harus melakukan kembali permintaan reset password.</p>
 									</td>
 								</tr>
 								<tr>
 									<td style="padding: 0; color: #FF9933; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;" align="center">
-										Didn't ask for a new password? You can ignore this email.
+                    <hr style="border-top: dashed 1px;" />
+                    <p>Abaikan pesan ini jika Anda tidak meminta untuk reset password.</p>
 									</td>
 								</tr>
 							</table>
@@ -110,7 +112,6 @@ exports.reset_password = function(user, link) {
 
 
 
-
 exports.registered_success = function(setting, user, activation) {
   let getRole = 'Mitra Jasa'
   if (user.role == 4) {
@@ -132,7 +133,7 @@ exports.registered_success = function(setting, user, activation) {
   				<table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border: 1px solid #cccccc; border-collapse: collapse;">
   					<tr>
   						<td align="center" bgcolor="#FF9933" style="padding: 20px 0 20px 0; color: #153643; font-size: 28px; font-weight: bold; font-family: Arial, sans-serif;">
-  							<img src="${logo}" alt="Logo Trippediacity" style="display: block;" />
+  							<img src="${logo}" alt="SuratIzin[dot]Com" style="display: block;" />
   						</td>
   					</tr>
   					<tr>
@@ -146,6 +147,7 @@ exports.registered_success = function(setting, user, activation) {
                   <tr>
                     <td style="padding-top: 20px; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;" align="justify">
                       <p>Anda telah resmi bergabung menjadi <label style="color: #FF9933;">${getRole}</label> di ${setting.app_name} yang merupakan <i>Marketplace</i> jasa terbesar di Indonesia.</p>
+                      <p>Silahkan klik tombol / copy paste text link dibawah ini untuk mengaktifkan akun Anda.</p>
                     </td>
                   </tr>
                   <tr>
@@ -154,7 +156,7 @@ exports.registered_success = function(setting, user, activation) {
   											<table border="0" cellpadding="0" cellspacing="0" style="border-width:1px; border-style:dashed;" width="50%">
   												<tr>
   													<td style="padding: 10px 0 10px 0; color: #FFFFFF; font-family: Arial, sans-serif; font-size: 16px; line-height: 22px;" bgcolor="#FF9933" align="center">
-  														<b>AKTIVASI AKUN</b>
+                              <b>AKTIVASI AKUN</b>
   													</td>
   												</tr>
   											</table>
@@ -163,7 +165,7 @@ exports.registered_success = function(setting, user, activation) {
                     </td>
                   </tr>
                   <tr>
-                    <td style="padding-top: 5px; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;" align="justify">
+                    <td style="padding-top: 5px; color: #FF9933; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;" align="justify">
                       <hr style="border-top: dashed 1px;" />
                       <p>Terima kasih telah memilih ${setting.app_name} untuk menjadi partner bisnis Anda.</p>
                     </td>

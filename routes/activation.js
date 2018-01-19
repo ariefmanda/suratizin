@@ -30,10 +30,11 @@ Router.get('/:token', (req, res) => {
         })
         .then(function() {
           res.render('./login', {
-            title     : title,
-            setting   : setting[0],
-            user      : user,
-            alert     : message.success('Akun Anda sudah aktif, silahkan login untuk update profil Anda'),
+            title       : title,
+            setting     : setting[0],
+            user        : user,
+            userSession : req.session.user,
+            alert       : message.success('Akun Anda sudah aktif, silahkan login untuk update profil Anda'),
           })
           objAlert = null
         })

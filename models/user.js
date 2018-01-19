@@ -102,7 +102,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   User.prototype.check_password = function (userPassword, callback) {
-    if(library.comparePassword(password,this.password)){
+    if (library.comparePassword(userPassword, this.password)) {
       callback(true)
     }else{
       callback(false)
