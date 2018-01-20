@@ -12,6 +12,7 @@
 			var getRole 	  = ''
 			var statusText  = ''
 			var statusLabel = ''
+			var kelamin     = ''
 			if (user) {
 				if (user.role == 0) {
 					getRole = 'Superadmin'
@@ -25,6 +26,12 @@
 					getRole = 'Pencari Jasa'
 				} else if (user.role == 5) {
 					getRole = 'Pencari Jasa VIP'
+				}
+
+				if (user.gender == 1) {
+					kelamin = 'Pria'
+				} else if (user.gender == 2) {
+					kelamin = 'Wanita'
 				}
 
 				if (user.status == 0) {
@@ -48,10 +55,17 @@
 		          <!-- Profile Image -->
 		          <div class="box box-primary">
 		            <div class="box-body box-profile">
-		              <img class="profile-user-img img-responsive img-circle" src="/public/assets/img/user4-128x128.jpg" alt="User profile picture">
+		              <img src="/public/uploads/profile/<%= user.photo %>" onError="this.src='/public/uploads/profile/user.png';" height="392px" width="392px" class="profile-user-img img-responsive img-circle" alt="<%= user.name %>" align="center">
 		              <h3 class="profile-username text-center"><%= user.name %></h3>
 		              <p class="text-muted text-center"><%= getRole %></p>
-									<a href="#" class="btn btn-primary btn-block"><b>Upload</b></a>
+
+									<form action="/user/upload/<%= user.id %>" method="post" encType="multipart/form-data">
+										<div class="form-group">
+											<!-- <label class="control-label">Photo Profile Upload:</label> -->
+											<input type="file" name="photo_profile" accept="image/*" data-style="fileinput">
+										</div>
+										<button type="submit" class="btn btn-primary btn-block">Upload Photo</button>
+									</form>
 		              <!-- <ul class="list-group list-group-unbordered">
 		                <li class="list-group-item">
 		                  <b>Followers</b> <a class="pull-right">1,322</a>
@@ -85,11 +99,11 @@
 					            </tr>
 					            <tr>
 					              <th>Kelamin</th>
-					              <td><%= user.gender %></td>
+					              <td><%= kelamin %></td>
 					            </tr>
 					            <tr>
 					              <th>No. HP</th>
-					              <td><%= user.handphone %></td>
+					              <td><% if (user.handphone != '') { %>+62<% } %><%= user.handphone %></td>
 					            </tr>
 											<tr>
 					              <th>Alamat</th>
@@ -112,119 +126,80 @@
 		            </ul>
 		            <div class="tab-content">
 		              <div class="active tab-pane" id="profile">
-		                <div class="post">
-		                  <div class="user-block">
-		                    <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
-		                        <span class="username">
-		                          <a href="#">Jonathan Burke Jr.</a>
-		                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-		                        </span>
-		                    <span class="description">Shared publicly - 7:30 PM today</span>
-		                  </div>
-		                  <!-- /.user-block -->
-		                  <p>
-		                    Lorem ipsum represents a long-held tradition for designers,
-		                    typographers and the like. Some people hate it and argue for
-		                    its demise, but others ignore the hate as they create awesome
-		                    tools to help create filler text for everyone from bacon lovers
-		                    to Charlie Sheen fans.
-		                  </p>
-		                  <ul class="list-inline">
-		                    <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-		                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-		                    </li>
-		                    <li class="pull-right">
-		                      <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-		                        (5)</a></li>
-		                  </ul>
 
-		                  <input class="form-control input-sm" type="text" placeholder="Type a comment">
-		                </div>
-		                <!-- /.post -->
+										<form action="/user/profile/edit/<%= user.id %>" method="post" class="form-horizontal" id="validate-form">
+											<div class="box-body">
+												<div class="col-md-12">
+													<div class="widget">
+														<div class="widget-content">
+															<div class="row">
 
-		                <!-- Post -->
-		                <div class="post clearfix">
-		                  <div class="user-block">
-		                    <img class="img-circle img-bordered-sm" src="../../dist/img/user7-128x128.jpg" alt="User Image">
-		                        <span class="username">
-		                          <a href="#">Sarah Ross</a>
-		                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-		                        </span>
-		                    <span class="description">Sent you a message - 3 days ago</span>
-		                  </div>
-		                  <!-- /.user-block -->
-		                  <p>
-		                    Lorem ipsum represents a long-held tradition for designers,
-		                    typographers and the like. Some people hate it and argue for
-		                    its demise, but others ignore the hate as they create awesome
-		                    tools to help create filler text for everyone from bacon lovers
-		                    to Charlie Sheen fans.
-		                  </p>
+																<div class="col-md-12">
+																	<div class="form-group">
+																		<label class="col-md-2 control-label">Nama <span class="required">*</span></label>
+																		<div class="col-md-10"><input type="text" name="name" value="<%= user.name %>" class="form-control" required></div>
+																	</div>
+																</div>
+																<div class="col-md-6">
+																	<div class="form-group">
+																		<label class="col-md-4 control-label">Kelamin <span class="required">*</span></label>
+																		<div class="col-md-8">
+																			<select name="gender" class="form-control" required>
+											                  <option <% if (user.gender == 1) { %> selected <% } %> value="1">Pria</option>
+											                  <option <% if (user.gender == 2) { %> selected <% } %> value="2">Wanita</option>
+											                </select>
+																		</div>
+																	</div>
+																</div>
+																<div class="col-md-6">
+																	<div class="form-group">
+																		<label class="col-md-4 control-label">No. HP <span class="required">*</span></label>
+		                                <div class="col-md-8">
+		                                  <div class="input-group">
+		            												<span class="input-group-addon">+62</span>
+		            												<input type="number" name="handphone" value="<%= user.handphone %>" class="form-control" required>
+		            											</div>
+		                                </div>
+																	</div>
+																</div>
+																<div class="col-md-12">
+																	<div class="form-group">
+																		<label class="col-md-2 control-label">Alamat </label>
+																		<div class="col-md-10"><input type="text" name="address" value="<%= user.address %>" class="form-control"></div>
+																	</div>
+																</div>
+																<div class="col-md-12">
+																	<div class="form-group">
+																		<label class="col-md-2 control-label">Email <span class="required">*</span></label>
+																		<div class="col-md-10"><input type="email" name="email" value="<%= user.email %>" class="form-control" disabled="disabled"></div>
+																	</div>
+																</div>
+																<div class="col-md-12">
+																	<div class="form-group">
+																		<label class="col-md-2 control-label">New password </label>
+																		<div class="col-md-10"><input type="password" name="new_password" class="form-control" placeholder="Leave empty for no password-change"></div>
+																	</div>
+																</div>
+																<div class="col-md-12">
+																	<div class="form-group">
+																		<label class="col-md-2 control-label">Repeat New password </label>
+																		<div class="col-md-10"><input type="password" name="new_password_repeat" class="form-control" placeholder="Leave empty for no password-change"></div>
+																	</div>
+																</div>
 
-		                  <form class="form-horizontal">
-		                    <div class="form-group margin-bottom-none">
-		                      <div class="col-sm-9">
-		                        <input class="form-control input-sm" placeholder="Response">
-		                      </div>
-		                      <div class="col-sm-3">
-		                        <button type="submit" class="btn btn-danger pull-right btn-block btn-sm">Send</button>
-		                      </div>
-		                    </div>
-		                  </form>
-		                </div>
-		                <!-- /.post -->
+																<div class="col-md-12">
+																	<input type="submit" value="Update Profile" class="btn btn-primary pull-right">
+																</div>
 
-		                <!-- Post -->
-		                <div class="post">
-		                  <div class="user-block">
-		                    <img class="img-circle img-bordered-sm" src="../../dist/img/user6-128x128.jpg" alt="User Image">
-		                        <span class="username">
-		                          <a href="#">Adam Jones</a>
-		                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-		                        </span>
-		                    <span class="description">Posted 5 photos - 5 days ago</span>
-		                  </div>
-		                  <!-- /.user-block -->
-		                  <div class="row margin-bottom">
-		                    <div class="col-sm-6">
-		                      <img class="img-responsive" src="../../dist/img/photo1.png" alt="Photo">
-		                    </div>
-		                    <!-- /.col -->
-		                    <div class="col-sm-6">
-		                      <div class="row">
-		                        <div class="col-sm-6">
-		                          <img class="img-responsive" src="../../dist/img/photo2.png" alt="Photo">
-		                          <br>
-		                          <img class="img-responsive" src="../../dist/img/photo3.jpg" alt="Photo">
-		                        </div>
-		                        <!-- /.col -->
-		                        <div class="col-sm-6">
-		                          <img class="img-responsive" src="../../dist/img/photo4.jpg" alt="Photo">
-		                          <br>
-		                          <img class="img-responsive" src="../../dist/img/photo1.png" alt="Photo">
-		                        </div>
-		                        <!-- /.col -->
-		                      </div>
-		                      <!-- /.row -->
-		                    </div>
-		                    <!-- /.col -->
-		                  </div>
-		                  <!-- /.row -->
+															</div>
+														</div>
+													</div>
+												</div>
 
-		                  <ul class="list-inline">
-		                    <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-		                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-		                    </li>
-		                    <li class="pull-right">
-		                      <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-		                        (5)</a></li>
-		                  </ul>
+											</div>
+										</form>
 
-		                  <input class="form-control input-sm" type="text" placeholder="Type a comment">
-		                </div>
 		              </div>
-		              <!-- /.tab-pane -->
-
 		            </div>
 		          </div>
 		        </div>
