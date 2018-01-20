@@ -1,7 +1,14 @@
 {
   "development": {
     "username": "postgres",
-    "password": "admin",
+    "password": "p4ssw0rd",
+    "database": "suratizin",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "development_arief": {
+    "username": "postgres",
+    "password": null,
     "database": "suratizin",
     "host": "127.0.0.1",
     "dialect": "postgres"

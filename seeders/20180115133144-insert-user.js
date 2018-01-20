@@ -5,7 +5,7 @@ module.exports = {
     return queryInterface.bulkInsert('Admins', [{
       name: 'Superadmin',
       email: 'superadmin@suratizin.com',
-      password: '70f41bf828a19aa28d9ffc198c06f796',
+      password: '$2a$10$SFgNj5HffJA2fomteTTyDe01s9Md2ZXAPHhoSPk3FUgmrxdO2NoP.',
       role: 0,
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -13,7 +13,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Admins');
     /*
       Add reverting commands here.
       Return a promise to correctly handle asynchronicity.

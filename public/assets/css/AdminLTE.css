@@ -2499,7 +2499,7 @@ a:focus {
  * ----------------
  */
 .alert {
-  border-radius: 0px;
+  border-radius: 3px;
 }
 .alert h4 {
   font-weight: 600;
