@@ -5,11 +5,16 @@ const Router      = express.Router()
 const title       = 'Login Admin'
 const library     = require('../../helpers/library');
 let message_login = null
+let objAlert = null;
 Router.get('/', (req, res) => {
-  res.render('./admin/login', {
-    title         : title,
-    message_login
-  })
+    if(req.session.isLogin){
+      res.redirect('/admin')
+    }else{
+      res.render('./admin/login', {
+        title         : title,
+        message_login
+      })
+    }
 })
 Router.post('/verification', (req, res) => {
   Model.Admin.findOne({
@@ -40,7 +45,8 @@ Router.post('/verification', (req, res) => {
         } else {
           req.session.isLogin = false //>>> ganti false
           req.session.admin = undefined //>> ganti undefines
-          message_login = 'Incorrect Username or Password !!'
+          message_login = 'Incorrect Username or Password !!',
+          alert='danger'
           // let objLog = {
           //   UserId      : user.id,
           //   username    : user.username,
@@ -52,6 +58,7 @@ Router.post('/verification', (req, res) => {
           // Model.Log.create(objLog)
           res.redirect('/admin/login')
         }
+        message_login=null
       })
     }
   })
