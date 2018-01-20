@@ -4,6 +4,7 @@ const express = require('express')
 const Router  = express.Router()
 var title   = 'Dashboard'
 let objAlert = null;
+
 Router.get('/', (req, res) => {
   Model.Setting.findAll()
   .then(function(setting) {
@@ -22,6 +23,7 @@ Router.get('/', (req, res) => {
   })
   objAlert = null;
 })
+
 Router.get('/logout', (req, res) => {
   req.session.isLogin = false
   req.session.destroy((err) => {
@@ -31,6 +33,7 @@ Router.get('/logout', (req, res) => {
     }
   })
 })
+
 Router.get('/setting', (req, res) => {
   Model.Setting.findAll().then(function(setting) {
     if (!setting) {
