@@ -112,7 +112,7 @@
                 </li> -->
                 <li class="user-footer">
                   <div class="pull-left">
-                    <a href="<% if (userSession.role < 2) { %> /admin/profile <% } else { %> /user/profile <% } %>" class="btn btn-default btn-flat">Profile</a>
+                    <a href="<% if (userSession.role < 2) { %> /admin/profile/<%= userSession.id %> <% } else { %> /user/profile/<%= userSession.id %> <% } %>" class="btn btn-default btn-flat">Profile</a>
                   </div>
                   <div class="pull-right">
                     <a href="/user/logout" class="btn btn-default btn-flat">Sign out</a>
