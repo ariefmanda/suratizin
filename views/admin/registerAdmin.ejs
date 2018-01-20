@@ -36,7 +36,7 @@
               <%= element.roleName %>
             </td>
             <td>
-              <%= element.gender %>
+              <%= (element.gender)?(element.gender==1)?"Pria":"Wanita" : "" %>
             </td>
             <td>
               <%= element.handphone %>

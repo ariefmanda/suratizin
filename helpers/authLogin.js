@@ -3,7 +3,7 @@ function checkSession(req, res, next) {
   req.session.user={
     id:1,
     name:"ariefmanda",
-    role:2
+    role:0
   }
   if (req.session.isLogin) {
     res.locals.userSession = req.session.user
