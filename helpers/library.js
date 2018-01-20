@@ -8,7 +8,6 @@ function encrypt(text) {
   let cipher  = crypto.createCipher(algorithm, password)
   let crypted = cipher.update(text, 'utf8', 'hex')
   crypted += cipher.final('hex');
-  console.log(crypted);
   return crypted;
 }
 

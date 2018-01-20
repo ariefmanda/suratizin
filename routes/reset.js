@@ -24,7 +24,7 @@ Router.get('/:token', (req, res) => {
             setting     : setting[0],
             user        : user,
             alert       : objAlert,
-            userSession : req.session.user,
+            library     : library,
           })
           objAlert = null
         } else {
@@ -33,7 +33,6 @@ Router.get('/:token', (req, res) => {
             setting     : setting[0],
             user        : null,
             alert       : message.error('Permintaan reset password sudah melewati batas waktu (maks. 1 jam), silahkan melakukan permintaan reset password kembali !!'),
-            userSession : req.session.user,
           })
           objAlert = null
         }
@@ -43,7 +42,6 @@ Router.get('/:token', (req, res) => {
           setting     : setting[0],
           user        : null,
           alert       : message.error('Permintaan reset password sudah melewati batas waktu (maks. 1 jam), silahkan melakukan permintaan reset password kembali !!'),
-          userSession : req.session.user,
         })
         objAlert = null
       }
@@ -83,7 +81,6 @@ Router.post('/user/:token', (req, res) => {
                 setting     : setting[0],
                 user        : null,
                 alert       : message.success('Reset password telah berhasil, silahkan melakukan login !!'),
-                userSession : req.session.user,
               })
               objAlert = null
             })
@@ -93,7 +90,6 @@ Router.post('/user/:token', (req, res) => {
                 setting     : setting[0],
                 user        : user,
                 alert       : message.error(err.message),
-                userSession : req.session.user,
               })
               objAlert = null
             })
@@ -103,7 +99,6 @@ Router.post('/user/:token', (req, res) => {
               setting     : setting[0],
               user        : null,
               alert       : message.error('Permintaan reset password sudah melewati batas waktu (maks. 1 jam), silahkan melakukan permintaan reset password kembali !!'),
-              userSession : req.session.user,
             })
             objAlert = null
           }
@@ -113,7 +108,6 @@ Router.post('/user/:token', (req, res) => {
             setting     : setting[0],
             user        : null,
             alert       : message.error('Permintaan reset password sudah melewati batas waktu (maks. 1 jam), silahkan melakukan permintaan reset password kembali !!'),
-            userSession : req.session.user,
           })
           objAlert = null
         }

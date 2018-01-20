@@ -11,22 +11,24 @@ const title       = 'User'
 
 let objAlert  = null
 
-Router.get('/', (req, res) => {
+Router.get('/:id', (req, res) => {
   Model.Setting.findAll()
   .then(function(setting) {
-    res.render('./login', {
-      title       : title,
-      setting     : setting[0],
-      user        : null,
-      userSession : req.session.user,
-      alert       : objAlert,
-      library     : library,
+    Model.User.findById(req.params.id)
+    .then(function(user) {
+      res.render('./login', {
+        title       : title,
+        setting     : setting[0],
+        user        : user,
+        alert       : objAlert,
+        library     : library,
+      })
+      objAlert = null
     })
-    objAlert = null
   })
 })
 
-Router.get('/logout', (req, res) => {
+Router.get('/:id/logout', (req, res) => {
   req.session.isLogin    = false
   req.session.destroy((err) => {
     if (!err) {
@@ -83,6 +85,8 @@ Router.post('/upload/:id', (req, res) => {
           }
         })
         .then(function() {
+          req.session.user   = user
+          res.locals.session = req.session
           objAlert = message.success()
           res.redirect(`/user/profile/${user.id}`)
         })
@@ -110,6 +114,7 @@ Router.post('/profile/edit/:id', (req, res) => {
   if (req.body.new_password == '') {
     hooks = false
     var objUser = {
+      id            : req.params.id,
       name          : req.body.name,
       gender        : req.body.gender,
       handphone     : req.body.handphone,
@@ -118,6 +123,7 @@ Router.post('/profile/edit/:id', (req, res) => {
     }
   } else {
     var objUser = {
+      id            : req.params.id,
       name          : req.body.name,
       gender        : req.body.gender,
       handphone     : req.body.handphone,
