@@ -1,7 +1,7 @@
 function checkSession(req, res, next) {
   if (req.session.isLogin) {
-    res.locals.userSession = req.session.user
-    if(req.originalUrl=='/admin'&&req.session.user.role>1){
+    // res.locals.userSession = req.session.user
+    if (req.originalUrl == '/admin' && req.session.user.role > 1) {
       res.redirect('/user')
     }else{
       next(res.path)

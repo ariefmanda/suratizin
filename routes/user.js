@@ -114,6 +114,7 @@ Router.post('/profile/edit/:id', (req, res) => {
   if (req.body.new_password == '') {
     hooks = false
     var objUser = {
+      id            : req.params.id,
       name          : req.body.name,
       gender        : req.body.gender,
       handphone     : req.body.handphone,
@@ -122,6 +123,7 @@ Router.post('/profile/edit/:id', (req, res) => {
     }
   } else {
     var objUser = {
+      id            : req.params.id,
       name          : req.body.name,
       gender        : req.body.gender,
       handphone     : req.body.handphone,
