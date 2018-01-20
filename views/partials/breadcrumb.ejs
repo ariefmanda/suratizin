@@ -4,7 +4,6 @@
     <li><a href="/admin"><i class="fa fa-dashboard"></i> Dashboard</a></li>
     <% if (title !== 'Dashboard') { %>
       <li <% if (action == '') { %> class="active" <% } %>>
-        <a href="#">Examples</a>
         <a href="/<%= title.toLowerCase() %>" title="<%= title %>"><%= title %></a>
       </li>
       <% if (action !== '') { %>
