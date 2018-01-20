@@ -141,7 +141,7 @@ Router.post('/verification', (req, res) => {
           if (isMatch) {
             req.session.isLogin    = true
             req.session.user       = user
-            res.locals.userSession = req.session.user
+            // res.locals.userSession = req.session.user
             // let objLog = {
             //   UserId      : user.id,
             //   username    : user.username,
