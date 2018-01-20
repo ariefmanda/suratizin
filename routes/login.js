@@ -121,7 +121,7 @@ Router.get('/register/:id', (req, res) => {
   })
 })
 
-Router.post('/auth', (req, res) => {
+Router.post('/verification', (req, res) => {
   Model.Setting.findAll()
   .then(function(setting) {
     Model.User.findOne({
