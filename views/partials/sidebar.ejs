@@ -2,8 +2,9 @@
   <section class="sidebar">
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">MAIN NAVIGATION</li>
+      <%if(userSession.role==0){%>
       <li class="active">
-        <a href="#"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+        <a href="/admin"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
       </li>
       <li class="treeview">
         <a href="#">
@@ -18,6 +19,7 @@
           <li><a href="/admin/mitra"><i class="fa fa-circle-o"></i> Validation Partner</a></li>
         </ul>
       </li>
+      <%}%>
     </ul>
   </section>
 </aside>
