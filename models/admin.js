@@ -21,14 +21,14 @@ module.exports = (sequelize, DataTypes) => {
           msg: 'Email must be filled !!'
         },
         isUnique: function(value, next) {
-          User.findAll({
+          Admin.findAll({
             where:{
               email: value,
               id: { [Op.ne]: this.id, }
             }
           })
-          .then(function(user) {
-            if (user.length == 0) {
+          .then(function(admin) {
+            if (admin.length == 0) {
               next()
             } else {
               next('Email already used !!')
@@ -94,12 +94,12 @@ module.exports = (sequelize, DataTypes) => {
     },
     photo: {
       type: DataTypes.STRING,
-      validate: {
-        notEmpty: {
-          args: true,
-          msg: 'photo must be filled !!'
-        },
-      }
+      // validate: {
+      //   notEmpty: {
+      //     args: true,
+      //     msg: 'photo must be filled !!'
+      //   },
+      // }
     },
     reset_token: DataTypes.STRING,
     reset_expired: DataTypes.DATE

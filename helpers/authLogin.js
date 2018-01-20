@@ -1,4 +1,10 @@
 function checkSession(req, res, next) {
+  req.session.isLogin=true
+  req.session.user={
+    id:1,
+    name:"ariefmanda",
+    role:2
+  }
   if (req.session.isLogin) {
     res.locals.userSession = req.session.user
     if(req.originalUrl=='/admin'&&req.session.user.role>1){
