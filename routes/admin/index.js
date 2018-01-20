@@ -1,6 +1,7 @@
 const Model = require("../../models");
 const message = require("../../helpers/message");
 const express = require("express");
+const app = express()
 const Router = express.Router();
 const getRole = require("../../helpers/getRole");
 const library = require("../../helpers/library");
@@ -26,15 +27,6 @@ Router.get("/", (req, res) => {
   objAlert = null;
 });
 
-Router.get("/logout", (req, res) => {
-  req.session.isLogin = false;
-  req.session.destroy(err => {
-    if (!err) {
-      res.locals.user = undefined;
-      res.redirect("/admin/login");
-    }
-  });
-});
 
 Router.get("/setting", (req, res) => {
   (req.session.user.role != 0)? res.redirect('/admin'):''; 
@@ -217,12 +209,12 @@ Router.get("/register/edit/:token", (req, res) => {
         })
         .catch(err => {
           objAlert = message.error(err.message);
-          res.redirect("/admin/register");
+          res.redirect(`/admin/register/edit/${req.params.token}`);
         });
     })
     .catch(err => {
       objAlert = message.error(err.message);
-      res.redirect("/admin/register");
+      res.redirect(`/admin/register/edit/${req.params.token}`);
     });
 });
 Router.post("/register/edit/:token", (req, res) => {
@@ -293,6 +285,135 @@ Router.get("/register/delete/:token",(req,res)=>{
   .catch(err=>{
     objAlert = message.error(err.message);
     res.redirect("/admin/register");
+  })
+})
+Router.get("/listUser", (req, res) => {
+  (req.session.user.role != 0)? res.redirect('/admin'):''; 
+  Model.Setting.findAll()
+    .then(function(setting) {
+      Model.User.findAll()
+        .then(function(user) {
+          user.map(e => {
+            e.roleName = getRole(e.role);
+            e.encryptId = library.encrypt(String(e.id));
+          });
+          res.render("./admin/index", {
+            path: 5,
+            title: "Register Admin",
+            action: "",
+            user: user,
+            setting: setting[0],
+            new_button: true,
+            alert: objAlert
+          });
+          objAlert = null;
+        })
+        .catch(err => {
+          objAlert = message.error(err.message);
+          res.redirect("/admin/register");
+        });
+    })
+    .catch(err => {
+      objAlert = message.error(err.message);
+      res.redirect("/admin/register");
+    });
+});
+Router.get("/listUser/edit/:token", (req, res) => {
+  (req.session.user.role != 0)? res.redirect('/admin'):''; 
+  Model.Setting.findAll()
+    .then(function(setting) {
+      Model.User.findById(library.decrypt(req.params.token))
+        .then(user => {
+          res.render("./admin", {
+            path: 6,
+            title: "Form Edit Register Admin",
+            action: "",
+            user,
+            setting: setting[0],
+            new_button: true,
+            alert: objAlert
+          });
+          objAlert = null;
+        })
+        .catch(err => {
+          objAlert = message.error(err.message);
+          res.redirect(`/admin/listUser/edit/${req.params.token}`);
+        });
+    })
+    .catch(err => {
+      objAlert = message.error(err.message);
+      res.redirect(`/admin/listUser/edit/${req.params.token}`);
+    });
+});
+Router.post("/listUser/edit/:token", (req, res) => {
+  (req.session.user.role != 0)? res.redirect('/admin'):''; 
+  let data=null
+  if(req.body.password){
+    if(req.body.password !== req.body.password_repeat) {
+      objAlert = message.error("Password repeat false");
+      res.redirect(`/admin/listUser/edit/${req.params.token}`);
+    }else{
+      data = {
+        id: Number(library.decrypt(req.params.token)),
+        name: req.body.name,
+        email: req.body.email,
+        role: req.body.role,
+        gender: req.body.gender,
+        handphone: req.body.handphone,
+        address: req.body.address,
+        password: req.body.password,
+        status: req.body.status
+      }
+    }
+  }else{
+    data ={
+      id: Number(library.decrypt(req.params.token)),
+      name: req.body.name,
+      email: req.body.email,
+      role: 1,
+      gender: req.body.gender,
+      handphone: req.body.handphone,
+      address: req.body.address,
+      status: req.body.status
+    }
+  }
+  Model.Setting.findAll()
+    .then(function(setting) {
+      Model.User.update(data,{
+        where: {
+          id: Number(library.decrypt(req.params.token))
+        },
+        individualHooks: false 
+      })
+        .then(user => {
+          objAlert = message.success("Data berhasi diupdate");
+          res.redirect("/admin/listUser");
+        })
+        .catch(err => {
+          objAlert = message.error(err.message);
+          res.redirect(`/admin/listUser/edit/${req.params.token}`);
+        });
+    })
+    .catch(err => {
+      objAlert = message.error(err.message);
+      res.redirect(`/admin/listUser/edit/${req.params.token}`);
+    });
+});
+
+Router.get("/listUser/delete/:token",(req,res)=>{
+  (req.session.user.role != 0)? res.redirect('/admin'):''; 
+  Model.User.destroy({
+    where:{
+      id: Number(library.decrypt(req.params.token))
+    }
+  })
+  .then(()=>{
+    objAlert = message.success("Data berhasi dihapus");
+    res.redirect("/admin/listUser");
+  })
+  .catch(err=>{
+    objAlert = message.error(err.message);
+    res.redirect("/admin/listUser");
   })
 })
 module.exports = Router;
