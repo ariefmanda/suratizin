@@ -19,7 +19,6 @@ Router.get('/', (req, res) => {
       user        : null,
       alert       : objAlert,
       library     : library,
-      userSession : req.session.user,
     })
     objAlert = null
   })
@@ -113,7 +112,6 @@ Router.get('/register/:id', (req, res) => {
         title       : title,
         setting     : setting[0],
         user        : user,
-        userSession : req.session.user,
         alert       : objAlert,
       })
       objAlert = null
@@ -135,7 +133,6 @@ Router.post('/verification', (req, res) => {
           title       : title,
           setting     : setting[0],
           user        : user,
-          userSession : req.session.user,
           alert       : message.error('Username atau Password tidak sesuai !!'),
         })
         objAlert = null
@@ -153,7 +150,7 @@ Router.post('/verification', (req, res) => {
             //   status      : 'success',
             // }
             // Model.Log.create(objLog)
-            res.redirect('/user')
+            res.redirect(`/user/${user.id}`)
           } else {
             req.session.isLogin    = false
             req.session.user       = null
@@ -171,7 +168,6 @@ Router.post('/verification', (req, res) => {
               title       : title,
               setting     : setting[0],
               user        : null,
-              userSession : req.session.user,
               alert       : message.error('Username atau Password tidak sesuai !!'),
             })
             objAlert = null
@@ -184,7 +180,6 @@ Router.post('/verification', (req, res) => {
         title       : title,
         setting     : setting[0],
         user        : null,
-        userSession : req.session.user,
         alert       : message.error(err.message),
       })
       objAlert = null
