@@ -2,10 +2,10 @@
   <section class="sidebar">
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">MAIN NAVIGATION</li>
-      <%if(userSession.role==0){%>
       <li class="active">
         <a href="/admin"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
       </li>
+      <%if(userSession.role==0){%>
       <li class="treeview">
         <a href="#">
           <i class="fa fa-table"></i> <span>User Management</span>

@@ -2,8 +2,8 @@ function checkSession(req, res, next) {
   req.session.isLogin=true
   req.session.user={
     id:1,
-    name:"Superadmin",
-    role:0
+    name:"ariefmanda",
+    role:2
   }
   if (req.session.isLogin) {
     res.locals.userSession = req.session.user
