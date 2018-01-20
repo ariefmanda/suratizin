@@ -1,26 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<% include ../partials/metahead %>
 </head>
 
-<body class="hold-transition <%= setting.app_admintheme %> sidebar-mini fixed">
-  <div class="wrapper">
+<body class="hold-transition <%= setting.app_admintheme %> sitebar-mini fixed">
+	<div class="wrapper">
 		<% include ../partials/header %>
-		<% include ../partials/sidebar %>
+			<% include ../partials/sidebar %>
 
-		<div class="content-wrapper">
-			<% include ../partials/breadcrumb %>
-			<!-- Main content -->
-      <section class="content">
-			  <% include dashboard %>
-      </section>
-      <!-- /.content -->
-	  </div>
+				<div class="content-wrapper">
+					<% include ../partials/breadcrumb %>
+						<!-- Main content -->
+						<section class="content">
+							<%if(path==1){%>
+								<% include dashboard %>
+							<%}else if(path==2){%>
+								<% include settingForm %>
+							<%}%>
+						</section>
+						<!-- /.content -->
+				</div>
 
-    <% include ../partials/footeradmin %>
-  </div>
+				<% include ../partials/footeradmin %>
+	</div>
 
-  <% include ../partials/metafooter %>
+	<% include ../partials/metafooter %>
 </body>
+
 </html>

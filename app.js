@@ -29,8 +29,8 @@ app.use('/reset', require('./routes/reset'))
 app.use('/admin/login', require('./routes/admin/login'))
 app.use('/admin/logout', require('./routes/admin/logout'))
 app.use('/admin/forgot', require('./routes/admin/forgot'))
-// app.use('/reset/:token', require('./routes/reset'))
-
+app.use('/admin/reset', require('./routes/admin/reset'))
+//
 // app.use((req, res, next) => {
 //   res.locals.userSession = req.session.user
 //   next()

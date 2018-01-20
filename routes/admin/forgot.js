@@ -1,60 +1,105 @@
-const express = require('express')
-const Router  = express.Router()
-const title   = 'Forgot password'
-const library     = require('../../helpers/library');
+const Model = require("../../models");
+const message = require("../../helpers/message");
+const library = require("../../helpers/library");
+const template = require("../../helpers/templateemail");
+const send = require("../../helpers/notification");
+const express = require("express");
+const Sequelize = require("sequelize");
+const Router = express.Router();
+const title = "Forgot";
+let message_login = null;
 
-Router.post('/', (req, res) => {
-  Model.User.findOne({
+Router.post("/", (req, res) => {
+  Model.Admin.findOne({
     where: {
-      email: req.body.email,
+      email: req.body.email
     }
-  })
-  .then(function(user) {
-    if (user) {
-      let link  = req.headers.host + '/reset/'
-      let token = randomValueBase64(64)
-      let objMail = {
-        to      : user.email,
-        subject : '[Trippediacity] Request Reset Your Password',
-        body    : email.reset_password(user, link + token),
-      }
+  }).then(function(admin) {
+    Model.Setting.findAll().then(function(setting) {
+      if (admin) {
+        let info = "";
+        let token = library.randomValueBase64(64);
+        let link = req.headers.host + "/admin/reset/" + token;
+        let objUser = {
+          reset_token: token,
+          reset_expired: Date.now() + 3600000
+        };
 
-      send.email(objMail, function(error, info) {
-        if (!error) {
-          let objReset = {
-            reset_password_token    : token,
-            reset_password_expires  : Date.now() + 3600000,
-          }
-          Model.User.update(objReset, {
+        let promiseSendEmail = new Promise(function(resolve, reject) {
+          let objMail = {
+            to: req.body.email,
+            subject: `[${setting[0].app_name}] Permintaan reset password.`,
+            body: template.reset_password(admin, link)
+          };
+          send.email(objMail, function(error, info) {
+            if (!error) {
+              info = `Reset password telah dikirim ke email ${admin.email}`;
+              console.log(info);
+              resolve(info);
+            } else {
+              info = "Gagal untuk mengirimkan reset password !!";
+              console.log(error);
+              reject(error);
+            }
+          });
+        });
+
+        let promiseUpdateAdmin = new Promise(function(resolve, reject) {
+          Model.Admin.update(objUser, {
             where: {
-              id: user.id,
-            },
+              id: admin.id
+            }
           })
-          .then(function() {
-            res.render('./login', {
-              title         : title,
-              message_login : null,
-              message_reset : null,
-              success_reset : 'Great. We have sent you an email. Please check your email !!',
+            .then(function() {
+              info = "The record has been successfully updated.";
+              resolve(info);
             })
+            .catch(function(err) {
+              info = err;
+              reject(err);
+            });
+        });
+
+        Promise.all([promiseSendEmail, promiseUpdateAdmin])
+          .then(function() {
+            res.render("./admin/login", {
+              title: "Login",
+              setting: setting[0],
+              user: null,
+              userSession: req.session.user,
+              message_login: `Reset password telah dikirim ke email ${
+                admin.email
+              }`,
+              alert: "success"
+            });
+            objAlert = null;
           })
-        } else {
-          res.render('./login', {
-            title         : title,
-            message_login : null,
-            message_reset : error,
-            success_reset : null,
-          })
-        }
-      })
-    } else {
-      res.render('./login', {
-        title         : title,
-        message_login : null,
-        message_reset : 'Incorrect Email !!',
-        success_reset : null,
-      })
-    }
-  })
-})
+          .catch(function(err) {
+            res.render("./admin/login", {
+              title: "Login",
+              setting: setting[0],
+              user: null,
+              userSession: req.session.user,
+              message_login: (err.message),
+              alert:'danger'
+            });
+            objAlert = null;
+          });
+      } else {
+        res.render("./admin/login", {
+          title: "Login",
+          setting: setting[0],
+          user: null,
+          userSession: req.session.user,
+          message_login:
+            "Email tidak terdaftar, silahkan lakukan pendaftaran !!"
+          ,
+          alert: "danger"
+        });
+        objAlert = null;
+      }
+    });
+  });
+});
+
 module.exports = Router;
