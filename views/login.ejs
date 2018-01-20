@@ -4,94 +4,142 @@
 	<% include partials/metahead %>
 </head>
 
-<body class="hold-transition skin-blue layout-top-nav fixed">
+<body class="hold-transition <%= setting.app_publictheme %> layout-top-nav fixed">
   <div class="wrapper">
 		<% include partials/menutop %>
 
 		<div class="content-wrapper">
       <div class="container">
         <div class="content">
-          <h5>&nbsp;</h5>
+
+					<h5>&nbsp;</h5>
           <div class="box box-widget widget-user">
             <div class="box-header"></div>
             <div class="box-body">
+								<div class="col-md-6">
+	                <div class="login-box">
+										<div id="login">
+		              	  <div class="login-logo">
+		              	    <a href="/login"><b>Log</b>in</a>
+		              	  </div>
+		              	  <div class="login-box-body">
+		              	    <p class="login-box-msg">Masuk sebagai otoritas Anda</p>
+		              	    <form action="/login/verification" method="post">
+		              	      <div class="form-group has-feedback">
+		              	        <input type="email" name="email" value="eksoct@yahoo.com" class="form-control" placeholder="Email" required>
+		              	        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+		              	      </div>
+		              	      <div class="form-group has-feedback">
+		              	        <input type="password" name="password" value="password" class="form-control" placeholder="Password" required>
+		              	        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+		              	      </div>
+		              	      <div class="row">
+		              	        <div class="col-xs-8"></div>
+		              	        <div class="col-xs-4">
+		              	          <button type="submit" class="btn btn-primary btn-block btn-flat">Masuk</button>
+		              	        </div>
+		              	      </div>
+		              	    </form>
+		              	    <a href="#" id="show_forgot">Lupa password ?</a><br>
+											</div>
+	              	  </div>
 
-              <div class="col-md-6">
-                <div class="login-box">
-              	  <div class="login-logo">
-              	    <a href="/admin"><b>Log</b>in</a>
-              	  </div>
-              	  <div class="login-box-body">
-              	    <p class="login-box-msg">Masuk sebagai otoritas Anda</p>
-              	    <form action="/admin/login/verification" method="post">
-              	      <div class="form-group has-feedback">
-              	        <input type="email" class="form-control" placeholder="Email" required>
-              	        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-              	      </div>
-              	      <div class="form-group has-feedback">
-              	        <input type="password" class="form-control" placeholder="Password" required>
-              	        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-              	      </div>
-              	      <div class="row">
-              	        <div class="col-xs-8"></div>
-              	        <div class="col-xs-4">
-              	          <button type="submit" class="btn btn-primary btn-block btn-flat">Masuk</button>
-              	        </div>
-              	      </div>
-              	    </form>
-              	    <a href="#">Lupa password ?</a><br>
-              	  </div>
-              	</div>
-              </div>
+										<div id="forgot">
+		              	  <div class="login-logo">
+		              	    <a href="/login"><b>Lupa</b> Password</a>
+		              	  </div>
+		              	  <div class="login-box-body">
+		              	    <p class="login-box-msg">Masukkan email Anda untuk reset password</p>
+		              	    <form action="/forgot" method="post">
+		              	      <div class="form-group has-feedback">
+		              	        <input type="email" name="email" value="eksoct@yahoo.com" class="form-control" placeholder="Email" required>
+		              	        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+		              	      </div>
+		              	      <div class="row">
+		              	        <div class="col-xs-8"></div>
+		              	        <div class="col-xs-4">
+		              	          <button type="submit" class="btn btn-primary btn-block btn-flat">Reset</button>
+														</div>
+		              	      </div>
+		              	    </form>
+		              	    <a href="#" id="show_login">Kembali ke Login ?</a><br>
+											</div>
+	              	  </div>
+	              	</div>
+	              </div>
 
-              <div class="col-md-6 border-left">
-                <div class="login-box">
-                  <div class="login-logo">
-              	    <a href="/admin">Pen<b>daftar</b>an</a>
-              	  </div>
-                  <div class="register-box-body">
-                    <p class="login-box-msg">Pilih jenis pendaftaran</p>
-                    <form action="../../index.html" method="post">
-                      <div class="form-group has-feedback">
-                        <select class="form-control">
-                          <option>Mitra Jasa Kami</option>
-                          <option>Pencari Jasa</option>
-                        </select>
-                      </div>
-                      <div class="form-group has-feedback">
-                        <input type="text" class="form-control" placeholder="Nama lengkap">
-                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                      </div>
-                      <div class="form-group has-feedback">
-                        <input type="email" class="form-control" placeholder="Email">
-                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                      </div>
-                      <div class="form-group has-feedback">
-                        <input type="password" class="form-control" placeholder="Password">
-                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                      </div>
-                      <div class="form-group has-feedback">
-                        <input type="password" class="form-control" placeholder="Verifikasi password">
-                        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
-                      </div>
-                      <div class="row">
-                        <div class="col-xs-8"></div>
-                        <div class="col-xs-4">
-                          <button type="submit" class="btn btn-primary btn-block btn-flat">Daftar</button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-
-              	</div>
-              </div>
-
+	              <div class="col-md-6 border-left">
+	                <div class="login-box">
+										<% if (user != null) { %>
+											<h5>&nbsp;</h5>
+											<div class="callout callout-success" style="margin-bottom: 0!important;">
+									      <h4><i class="fa fa-info"></i>&nbsp;&nbsp;&nbsp;Selamat! Anda telah bergabung dengan <%= setting.app_name %></h4>
+												Silahkan cek email Anda (<%= user.email %>) untuk mengaktifkan akun Anda.<br>
+												Kemudian login sesuai akun Anda untuk update profil Anda.<br><br>
+												Terima kasih
+									    </div>
+										<% } else { %>
+											<div class="login-logo">
+		              	    <a href="/login">Pen<b>daftar</b>an</a>
+		              	  </div>
+		                  <div class="register-box-body">
+		                    <p class="login-box-msg">Pilih jenis pendaftaran</p>
+		                    <form action="/login/add" method="post">
+		                      <div class="form-group has-feedback">
+		                        <select name="role" class="form-control">
+		                          <option value="2">Mitra Jasa</option>
+		                          <option value="4">Pencari Jasa</option>
+		                        </select>
+		                      </div>
+		                      <div class="form-group has-feedback">
+		                        <input type="text" name="name" value="Eko Santoso" class="form-control" placeholder="Nama lengkap" required>
+		                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+		                      </div>
+		                      <div class="form-group has-feedback">
+		                        <input type="email" name="email" value="eksoct@yahoo.com" class="form-control" placeholder="Email" required>
+		                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+		                      </div>
+		                      <div class="form-group has-feedback">
+		                        <input type="password" name="password" value="password" class="form-control" placeholder="Password" required>
+		                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+		                      </div>
+		                      <div class="form-group has-feedback">
+		                        <input type="password" name="retype_password" value="password" class="form-control" placeholder="Verifikasi password" required>
+		                        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+		                      </div>
+		                      <div class="row">
+		                        <div class="col-xs-8"></div>
+		                        <div class="col-xs-4">
+		                          <button type="submit" class="btn btn-primary btn-block btn-flat">Daftar</button>
+		                        </div>
+		                      </div>
+		                    </form>
+		                  </div>
+										<% } %>
+	              	</div>
+	              </div>
             </div>
             <div class="box-header"></div>
           </div>
         </div>
       </div>
 	  </div>
+
+		<script>
+			$(document).ready(function(){
+				$("#forgot").hide();
+
+			  $("#show_forgot").click(function(){
+		      $("#login").hide();
+					$("#forgot").show();
+			  });
+
+			  $("#show_login").click(function(){
+		      $("#login").show();
+					$("#forgot").hide();
+			  });
+			});
+		</script>
 
     <% include partials/footer %>
   </div>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<% include partials/metahead %>
+</head>
+
+<body class="hold-transition <%= setting.app_publictheme %> layout-top-nav fixed">
+  <div class="wrapper">
+		<% include partials/menutop %>
+
+		<%
+			var getRole 	  = ''
+			var statusText  = ''
+			var statusLabel = ''
+			var kelamin     = ''
+			if (user) {
+				if (user.role == 0) {
+					getRole = 'Superadmin'
+				} else if (user.role == 1) {
+					getRole = 'Admin'
+				} else if (user.role == 2) {
+					getRole = 'Mitra Jasa'
+				} else if (user.role == 3) {
+					getRole = 'Mitra Jasa VIP'
+				} else if (user.role == 4) {
+					getRole = 'Pencari Jasa'
+				} else if (user.role == 5) {
+					getRole = 'Pencari Jasa VIP'
+				}
+
+				if (user.gender == 1) {
+					kelamin = 'Pria'
+				} else if (user.gender == 2) {
+					kelamin = 'Wanita'
+				}
+
+				if (user.status == 0) {
+					statusText 	= 'Menunggu Aktivasi'
+					statusLabel	= 'warning'
+				} else if (user.status == 1) {
+					statusText 	= 'Aktif'
+					statusLabel	= 'success'
+				}
+			}
+		%>
+
+		<div class="content-wrapper">
+      <div class="container">
+        <div class="content">
+
+					<h4><%= title %></h4>
+					<div class="row">
+		        <div class="col-md-3">
+
+		          <!-- Profile Image -->
+		          <div class="box box-primary">
+		            <div class="box-body box-profile">
+		              <img src="/public/uploads/profile/<%= user.photo %>" onError="this.src='/public/uploads/profile/user.png';" height="392px" width="392px" class="profile-user-img img-responsive img-circle" alt="<%= user.name %>" align="center">
+		              <h3 class="profile-username text-center"><%= user.name %></h3>
+		              <p class="text-muted text-center"><%= getRole %></p>
+
+									<form action="/user/upload/<%= user.id %>" method="post" encType="multipart/form-data">
+										<div class="form-group">
+											<!-- <label class="control-label">Photo Profile Upload:</label> -->
+											<input type="file" name="photo_profile" accept="image/*" data-style="fileinput">
+										</div>
+										<button type="submit" class="btn btn-primary btn-block">Upload Photo</button>
+									</form>
+		              <!-- <ul class="list-group list-group-unbordered">
+		                <li class="list-group-item">
+		                  <b>Followers</b> <a class="pull-right">1,322</a>
+		                </li>
+		                <li class="list-group-item">
+		                  <b>Following</b> <a class="pull-right">543</a>
+		                </li>
+		                <li class="list-group-item">
+		                  <b>Friends</b> <a class="pull-right">13,287</a>
+		                </li>
+		              </ul> -->
+		            </div>
+		          </div>
+
+		          <!-- About Me -->
+		          <div class="box box-primary">
+		            <div class="box-header with-border">
+		              <h3 class="box-title">Profile Saya</h3>
+		            </div>
+		            <div class="box-body">
+
+									<table class="table no-border">
+				            <tbody>
+											<tr>
+					              <th style="width:20%">Nama</th>
+					              <td><%= user.name %></td>
+					            </tr>
+					            <tr>
+					              <th>Email</th>
+					              <td><%= user.email %></td>
+					            </tr>
+					            <tr>
+					              <th>Kelamin</th>
+					              <td><%= kelamin %></td>
+					            </tr>
+					            <tr>
+					              <th>No. HP</th>
+					              <td><% if (user.handphone != '') { %>+62<% } %><%= user.handphone %></td>
+					            </tr>
+											<tr>
+					              <th>Alamat</th>
+					              <td><%= user.address %></td>
+					            </tr>
+											<tr>
+					              <th>Status</th>
+					              <td><span class="label label-<%= statusLabel %>"><%= statusText %></span></td>
+					            </tr>
+				          	</tbody>
+									</table>
+		            </div>
+		          </div>
+		        </div>
+
+		        <div class="col-md-9">
+		          <div class="nav-tabs-custom">
+		            <ul class="nav nav-tabs">
+		              <li class="active"><a href="#profile" data-toggle="tab">Edit Profile</a></li>
+		            </ul>
+		            <div class="tab-content">
+		              <div class="active tab-pane" id="profile">
+
+										<form action="/user/profile/edit/<%= user.id %>" method="post" class="form-horizontal" id="validate-form">
+											<div class="box-body">
+												<div class="col-md-12">
+													<div class="widget">
+														<div class="widget-content">
+															<div class="row">
+
+																<div class="col-md-12">
+																	<div class="form-group">
+																		<label class="col-md-2 control-label">Nama <span class="required">*</span></label>
+																		<div class="col-md-10"><input type="text" name="name" value="<%= user.name %>" class="form-control" required></div>
+																	</div>
+																</div>
+																<div class="col-md-6">
+																	<div class="form-group">
+																		<label class="col-md-4 control-label">Kelamin <span class="required">*</span></label>
+																		<div class="col-md-8">
+																			<select name="gender" class="form-control" required>
+											                  <option <% if (user.gender == 1) { %> selected <% } %> value="1">Pria</option>
+											                  <option <% if (user.gender == 2) { %> selected <% } %> value="2">Wanita</option>
+											                </select>
+																		</div>
+																	</div>
+																</div>
+																<div class="col-md-6">
+																	<div class="form-group">
+																		<label class="col-md-4 control-label">No. HP <span class="required">*</span></label>
+		                                <div class="col-md-8">
+		                                  <div class="input-group">
+		            												<span class="input-group-addon">+62</span>
+		            												<input type="number" name="handphone" value="<%= user.handphone %>" class="form-control" required>
+		            											</div>
+		                                </div>
+																	</div>
+																</div>
+																<div class="col-md-12">
+																	<div class="form-group">
+																		<label class="col-md-2 control-label">Alamat </label>
+																		<div class="col-md-10"><input type="text" name="address" value="<%= user.address %>" class="form-control"></div>
+																	</div>
+																</div>
+																<div class="col-md-12">
+																	<div class="form-group">
+																		<label class="col-md-2 control-label">Email <span class="required">*</span></label>
+																		<div class="col-md-10"><input type="email" name="email" value="<%= user.email %>" class="form-control" disabled="disabled"></div>
+																	</div>
+																</div>
+																<div class="col-md-12">
+																	<div class="form-group">
+																		<label class="col-md-2 control-label">New password </label>
+																		<div class="col-md-10"><input type="password" name="new_password" class="form-control" placeholder="Leave empty for no password-change"></div>
+																	</div>
+																</div>
+																<div class="col-md-12">
+																	<div class="form-group">
+																		<label class="col-md-2 control-label">Repeat New password </label>
+																		<div class="col-md-10"><input type="password" name="new_password_repeat" class="form-control" placeholder="Leave empty for no password-change"></div>
+																	</div>
+																</div>
+
+																<div class="col-md-12">
+																	<input type="submit" value="Update Profile" class="btn btn-primary pull-right">
+																</div>
+
+															</div>
+														</div>
+													</div>
+												</div>
+
+											</div>
+										</form>
+		              </div>
+		            </div>
+		          </div>
+		        </div>
+		      </div>
+
+        </div>
+      </div>
+	  </div>
+
+    <% include partials/footer %>
+  </div>
+
+  <% include partials/metafooter %>
+</body>
+</html>

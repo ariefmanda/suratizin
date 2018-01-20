@@ -1,11 +1,22 @@
 function checkSession(req, res, next) {
-  // console.log('====', req.originalUrl);
+  req.session.isLogin=true
+  req.session.user={
+    id:1,
+    name:"ariefmanda",
+    role:0
+  }
   if (req.session.isLogin) {
-    next(res.path)
+    res.locals.userSession = req.session.user
+    if(req.originalUrl=='/admin'&&req.session.user.role>1){
+      res.redirect('/user')
+    }else{
+      next(res.path)
+    }
   } else {
-    // let pathLogin = (req.originalUrl == '/admin') ? '/admin/login' : '/login'
-    // console.log('===', pathLogin);
-    res.redirect('/admin/login')
+    res.locals.userSession = null
+    let pathLogin = (req.originalUrl == '/admin') ? '/admin/login' : '/login'
+    console.log(req.originalUrl);
+    res.redirect(pathLogin)
   }
 }
 
