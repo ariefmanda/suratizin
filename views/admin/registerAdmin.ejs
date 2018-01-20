@@ -1,38 +1,60 @@
 <div class="box">
   <div class="box-header">
-    <div class="text-right"><a href="register/add" type="button" class="btn btn-primary">New <%= title %></a></div>
+    <div class="text-right">
+      <a href="register/add" type="button" class="btn btn-primary">New
+        <%= title %>
+      </a>
+    </div>
   </div>
-
   <div class="box-body">
     <table id="dataTable" class="table table-bordered table-striped">
       <thead>
-      <tr>
-        <th>Rendering engine</th>
-        <th>Browser</th>
-        <th>Platform(s)</th>
-        <th>Engine version</th>
-        <th>CSS grade</th>
-      </tr>
+        <tr>
+          <th>No</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Gender</th>
+          <th>Handphone</th>
+          <th>Address</th>
+          <th>Action</th>
+        </tr>
       </thead>
       <tbody>
-      <tr>
-        <td>Trident</td>
-        <td>Internet
-          Explorer 4.0
-        </td>
-        <td>Win 95+</td>
-        <td> 4</td>
-        <td>X</td>
-      </tr>
-      <tr>
-        <td>Trident</td>
-        <td>Internet
-          Explorer 5.0
-        </td>
-        <td>Win 95+</td>
-        <td>5</td>
-        <td>C</td>
-      </tr>
+        <% admin.forEach((element,i)=>{ %>
+          <tr>
+            <td>
+              <%= i+1 %>
+            </td>
+            <td>
+              <%= element.name %>
+            </td>
+            <td>
+              <%= element.email %>
+            </td>
+            <td>
+              <%= element.roleName %>
+            </td>
+            <td>
+              <%= element.gender %>
+            </td>
+            <td>
+              <%= element.handphone %>
+            </td>
+            <td>
+              <%= element.address %>
+            </td>
+            <td>
+              <% if(element.role!==0){ %>
+              <a href="">
+                <button class="box box-solid box-primary"  style="height:30px; width:70px">Edit</button>
+              </a>
+              <a href="" >
+                <button class="box box-solid box-danger" style="height:30px; width:70px ">Delete</button></a>
+              <% } %>
+            </td>
+          </tr>
+          <% }) %>
       </tbody>
     </table>
   </div>

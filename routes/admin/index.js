@@ -1,40 +1,41 @@
 const Model = require("../../models");
 const message = require("../../helpers/message");
-const express = require('express')
-const Router  = express.Router()
-var title   = 'Dashboard'
+const express = require("express");
+const Router = express.Router();
+const getRole = require("../../helpers/getRole");
+var title = "Dashboard";
 let objAlert = null;
 
-Router.get('/', (req, res) => {
+Router.get("/", (req, res) => {
   Model.Setting.findAll()
-  .then(function(setting) {
-    res.render('./admin/index', {
-      path        : 1,
-      title       : title,
-      action      : '',
-      setting     : setting[0],
-      new_button  : false,
-      alert       : null,
+    .then(function(setting) {
+      res.render("./admin/index", {
+        path: 1,
+        title: title,
+        action: "",
+        setting: setting[0],
+        new_button: false,
+        alert: null
+      });
     })
-  })
-  .catch((err) => {
-    objAlert = message.error(err.message);
-    res.redirect("/admin");
-  })
+    .catch(err => {
+      objAlert = message.error(err.message);
+      res.redirect("/admin");
+    });
   objAlert = null;
-})
+});
 
-Router.get('/logout', (req, res) => {
-  req.session.isLogin = false
-  req.session.destroy((err) => {
+Router.get("/logout", (req, res) => {
+  req.session.isLogin = false;
+  req.session.destroy(err => {
     if (!err) {
-      res.locals.user = undefined
-      res.redirect('/admin/login')
+      res.locals.user = undefined;
+      res.redirect("/admin/login");
     }
-  })
-})
+  });
+});
 
-Router.get('/setting', (req, res) => {
+Router.get("/setting", (req, res) => {
   Model.Setting.findAll().then(function(setting) {
     if (!setting) {
       let objSetting = {
@@ -55,8 +56,8 @@ Router.get('/setting', (req, res) => {
       Model.Setting.create(objSetting).then(function() {
         Model.Setting.findAll().then(function(setting) {
           res.render("./admin/index", {
-            path : 2,
-            title: 'Setting',
+            path: 2,
+            title: "Setting",
             action: "",
             new_button: false,
             setting: setting[0],
@@ -67,8 +68,8 @@ Router.get('/setting', (req, res) => {
       });
     } else {
       res.render("./admin/index", {
-        path : 2,
-        title: 'Setting',
+        path: 2,
+        title: "Setting",
         action: "",
         new_button: false,
         setting: setting[0],
@@ -112,27 +113,43 @@ Router.post("/setting", (req, res) => {
         objAlert = message.error(err.message);
         res.redirect("/admin/setting");
       });
-      objAlert = null;
+    objAlert = null;
   });
 });
 
-Router.get('/register', (req, res) => {
-  Model.Setting.findAll()
-  .then(function(setting) {
-    Model.Admin.findAll()
-    .then(function(admin) {
-      res.render('./admin/index', {
-        path        : 3,
-        title       : 'Register Admin',
-        action      : '',
-        admin       : admin,
-        setting     : setting[0],
-        new_button  : true,
-        alert       : null,
-      })
+Router.get("/register", (req, res) => {
+  Model.Setting.findAll().then(function(setting) {
+    Model.Admin.findAll().then(function(admin) {
+      admin.map(e => {
+        e.roleName = getRole(e.role);
+      });
+      res.render("./admin/index", {
+        path: 3,
+        title: "Register Admin",
+        action: "",
+        admin: admin,
+        setting: setting[0],
+        new_button: true,
+        alert: null
+      });
       objAlert = null;
-    })
-  })
-})
+    });
+  });
+});
+
+Router.get("/register/add", (req, res) => {
+  Model.Setting.findAll().then(function(setting) {
+    res.render("./admin", {
+      path: 4,
+      title: "Form New Register Admin",
+      action: "",
+      admin:null,
+      setting: setting[0],
+      new_button: true,
+      alert: null
+    });
+    objAlert = null;
+  });
+});
 
 module.exports = Router;
