@@ -20,6 +20,11 @@ app.use('/public', express.static(__dirname + '/public'))
 app.use(favicon(__dirname + '/public/assets/img/favicon.ico'))
 app.use(session({ secret: 'surat-izin-2018', cookie: { maxAge: 3600000 } })) //3600000
 
+app.use((req, res, next) => {
+  res.locals.userSession = req.session.user
+  next()
+})
+
 app.use('/', require('./routes/index'))
 app.use('/login', require('./routes/login'))
 app.use('/activation', require('./routes/activation'))

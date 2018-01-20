@@ -16,7 +16,7 @@ Router.get('/', (req, res) => {
       alert       : objAlert,
       setting     : setting[0],
       library     : library,
-      userSession : req.session.user,
+      user        : null,
     })
     objAlert  = null
   })

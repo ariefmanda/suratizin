@@ -67,7 +67,6 @@ Router.post('/', (req, res) => {
             title       : 'Login',
             setting     : setting[0],
             user        : null,
-            userSession : req.session.user,
             alert       : message.success(`Reset password telah dikirim ke email ${user.email}`),
           })
           objAlert = null
@@ -77,7 +76,6 @@ Router.post('/', (req, res) => {
             title       : 'Login',
             setting     : setting[0],
             user        : null,
-            userSession : req.session.user,
             alert       : message.error(err.message),
           })
           objAlert = null
@@ -87,7 +85,6 @@ Router.post('/', (req, res) => {
           title       : 'Login',
           setting     : setting[0],
           user        : null,
-          userSession : req.session.user,
           alert       : message.error('Email tidak terdaftar, silahkan lakukan pendaftaran !!'),
         })
         objAlert = null

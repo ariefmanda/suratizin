@@ -9,7 +9,6 @@ function checkSession(req, res, next) {
   } else {
     res.locals.userSession = null
     let pathLogin = (req.originalUrl == '/admin') ? '/admin/login' : '/login'
-    console.log(req.originalUrl);
     res.redirect(pathLogin)
   }
 }
