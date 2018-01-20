@@ -36,4 +36,22 @@ Router.get('/logout', (req, res) => {
   })
 })
 
+Router.get('/profile/:id', (req, res) => {
+  Model.Setting.findAll()
+  .then(function(setting) {
+    Model.User.findById(req.params.id)
+    .then(function(user) {
+      res.render('./profile', {
+        title       : title + ' Profile',
+        setting     : setting[0],
+        user        : user,
+        userSession : req.session.user,
+        alert       : objAlert,
+        library     : library,
+      })
+      objAlert = null
+    })
+  })
+})
+
 module.exports = Router;
