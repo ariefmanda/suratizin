@@ -13,5 +13,8 @@ module.exports = (sequelize, DataTypes) => {
     payment_method: DataTypes.INTEGER,
     status: DataTypes.INTEGER
   });
+  Request.associate = function(models) {
+    Request.belongsTo(models.User)
+  }
   return Request;
 };

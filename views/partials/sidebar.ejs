@@ -14,11 +14,24 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li><a href="/admin/register"><i class="fa fa-circle-o"></i> Register Admin</a></li>
-          <li><a href="/admin/listUser"><i class="fa fa-circle-o"></i> List User</a></li>
-          <li><a href="/admin/mitra"><i class="fa fa-circle-o"></i> Validation Vendor</a></li>
+          <li><a href="/admin/admin"><i class="fa fa-circle-o"></i> Register Admin</a></li>
+          <li><a href="/admin/user"><i class="fa fa-circle-o"></i> List User</a></li>
+          <li><a href="/admin/vendor"><i class="fa fa-circle-o"></i> Validation Vendor</a></li>
         </ul>
       </li>
+      <%}else{%>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-table"></i> <span>User Management</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/admin/user"><i class="fa fa-circle-o"></i> List User</a></li>
+            <li><a href="/admin/vendor"><i class="fa fa-circle-o"></i> Validation Vendor</a></li>
+          </ul>
+        </li>
       <%}%>
     </ul>
   </section>

@@ -12,6 +12,103 @@ const iconPhone =
 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAQK0lEQVRYCQEgEN/vAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///8QAAAAUQAAAEwAAAAlAAAAFAAAABEAAAAAAAAA7wAAAOwAAADbAAAAtAAAAK8BAQHwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////J////7P////6//////////////////////////////////////////////////////////r///+z////JgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP///wr///+e////+v//////////////////////////////////////////////////////////////////////////////+v///57///8KAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////Hv///9X////////////////////////////////////////////////////////////////////////////////////////////////////V////HgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///84////6v//////////////////////////////////////////////////////////////////////////////////////////////////////////////6v///zgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP///x/////r/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+r///8eAAAAAAAAAAAAAAAAAQAAAAAAAAAA////CgAAAMwAAAApAAAAAAD79gAA160AAPHjAAAAAAAAAAAAAAkRAAApUwAACxYA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dAAA+vQAAAAAAAAAAAAAJUoAAPPnAADozwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMGEAADZrAAAAAAAAAAAAAAAAAAAAAAAAAABhAf///w4AAADsAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADw4AAAuHEAAPLjAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKVIAAD16AAAAAAAAAAAAAAAAAAAAAPoAAAAVAgEBAfIAAAC3AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQIAAAUaEAACFCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALgBAQHyAgAAAAAAAAB0AAAA+gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABw4AAEWKAABOnAAAFi0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+gAAAHQAAAAAAgAAAAABAQHbAAAAogAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYMAAAUJ8AAEuWAAAqVQAACxYAAAAAAAAAAAAAAAAAAAAAAAAAAAAADx4AAAAAAAAAAAAAAAAAAAAAogEBAdsAAAAAAQAAAAAAAAAA////CQAAAMoAAAAsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO3aAADy5AAA9esAAPbsAAAIDwAAKVIAAAUKAAAAAAAAAADUAAAANgEBAfcAAAAAAAAAAAAAAAAAAAAAAP///x7////q/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+r///8dAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///84////6v//////////////////////////////////////////////////////////////////////////////////////////////////////////////6v///zgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////Hv///9X////////////////////////////////////////////////////////////////////////////////////////////////////U////HgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP///wr///+d////+v//////////////////////////////////////////////////////////////////////////////+v///53///8JAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////Jv///7P////6//////////////////////////////////////////////////////////r///+z////JgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///8OAAAAUgAAAE0AAAAkAAAAFAAAABIAAAAAAAAA7gAAAOwAAADcAAAAswAAAK4BAQHyAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJzzrsrL/j50AAAAASUVORK5CYII='
 
 
+exports.account_activation = function(user, link) {
+  return `
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>SuratIzin[dot]Com - Account Activation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body style="margin: 0; padding: 0;">
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tr>
+			<td style="padding: 10px 0 30px 0;">
+				<table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border: 1px solid #cccccc; border-collapse: collapse;">
+					<tr>
+						<td align="center" bgcolor="#FF9933" style="padding: 20px 0 20px 0; color: #153643; font-size: 28px; font-weight: bold; font-family: Arial, sans-serif;">
+							<img src="${logo}" alt="SuratIzin[dot]Com" style="display: block;" />
+						</td>
+					</tr>
+					<tr>
+						<td bgcolor="#ffffff" style="padding: 40px 30px 40px 30px;">
+							<table border="0" cellpadding="0" cellspacing="0" width="100%">
+								<tr>
+									<td style="color: #153643; font-family: Arial, sans-serif; font-size: 24px;" align="center">
+										<b>Hai ${user.name}</b>
+									</td>
+								</tr>
+								<tr>
+									<td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;" align="center">
+										<p>Kami menerima permintaan Anda untuk mengaktifkan akun ini lagi !</P>
+                    <p>Silahkan klik tombol / copy paste text link dibawah ini untuk reset password.</p>
+									</td>
+								</tr>
+								<tr>
+									<td style="padding: 10px 10px 10px 10px;" align="center">
+										<a href="http://${link}" style="color: #ffffff; text-decoration: none;">
+											<table border="0" cellpadding="0" cellspacing="0" style="border-width:1px; border-style:dashed;" width="50%">
+												<tr>
+													<td style="padding: 10px 0 10px 0; color: #FFFFFF; font-family: Arial, sans-serif; font-size: 16px; line-height: 22px;" bgcolor="#FF9933" align="center">
+                            <b>RESET PASSWORD</b>
+													</td>
+												</tr>
+											</table>
+										</a>
+                    <label style="font-size: 10px;">http://${link}</label>
+									</td>
+								</tr>
+								<tr>
+									<td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;" align="center">
+										<p>Catatan: Anda hanya mempunyai batas waktu 1 jam untuk aktifasi account anda kembali.</p>
+									</td>
+								</tr>
+								<tr>
+									<td style="padding: 0; color: #FF9933; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;" align="center">
+                    <hr style="border-top: dashed 1px;" />
+                    <p>Abaikan pesan ini jika Anda tidak meminta pengaktifan akun di suratIzin.com.</p>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td bgcolor="#FF9933" style="padding: 10px 10px 10px 10px;" align="center">
+							<table border="0" cellpadding="0" cellspacing="2px">
+								<tr>
+									<td>
+										<img src="${iconWeb}" alt="Website" width="24" height="24" style="display: block;" border="0" />
+									</td>
+									<td style="color: #ffffff; font-family: Arial, sans-serif; text-decoration: none; font-size: 12px;">
+										<a href="http://www.trippediacity.com/" style="color: #ffffff; text-decoration: none;">http://www.trippediacity.com</a>
+									</td>
+									<td width="5px">&nbsp;</td>
+									<td>
+										<img src="${iconEmail}" alt="Email" width="24" height="24" style="display: block;" border="0" />
+									</td>
+									<td style="color: #ffffff; font-family: Arial, sans-serif; text-decoration: none; font-size: 12px;">
+										<a href="mailto:services@trippediacity.com" style="color: #ffffff; text-decoration: none;">services@trippediacity.com</a>
+									</td>
+									<td width="5px">&nbsp;</td>
+									<td>
+										<img src="${iconPhone}" alt="Phone" width="24" height="24" style="display: block;" border="0" />
+									</td>
+									<td style="color: #ffffff; font-family: Arial, sans-serif; font-size: 12px;">
+										<label>+6221 519-0450</label>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
+`
+}
 exports.reset_password = function(user, link) {
   return `
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
