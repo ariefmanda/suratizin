@@ -10,4 +10,7 @@ Router.get('/', (req, res) => {
     }
   })
 })
+Router.get("*",(req,res)=>{
+  res.redirect('/admin')
+})
 module.exports = Router;

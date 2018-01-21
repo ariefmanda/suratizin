@@ -129,5 +129,8 @@ Router.post("/:token", (req, res) => {
     });
   }
 });
+Router.get("*",(req,res)=>{
+  res.redirect('/admin')
+})
 
 module.exports = Router;

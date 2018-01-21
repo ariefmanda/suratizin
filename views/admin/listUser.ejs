@@ -1,59 +1,115 @@
 <div class="box">
-    <div class="box-body">
-        <table id="dataTable" class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                    <th>Gender</th>
-                    <th>Handphone</th>
-                    <th>Address</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% user.forEach((element,i)=>{ %>
-                    <tr>
-                        <td>
-                            <%= i+1 %>
-                        </td>
-                        <td>
-                            <%= element.name %>
-                        </td>
-                        <td>
-                            <%= element.email %>
-                        </td>
-                        <td>
-                            <%= element.roleName %>
-                        </td>
-                        <td>
-                            <%= (element.gender)?(element.gender==1)?"Pria":"Wanita" : ""%>
-                        </td>
-                        <td>
-                            <%= element.handphone %>
-                        </td>
-                        <td>
-                            <%= element.address %>
-                        </td>
-                        <td>
-                            <%= (element.status) ? (element.status==1)?"aktif":"tidak Aktif" : "" %>
-                        </td>
-                        <td>
-                            <% if(element.role!==0){ %>
-                                <a href="/admin/listUser/edit/<%=element.encryptId%>">
-                                    <button class="box box-solid box-primary" style="height:30px; width:70px">Edit</button>
-                                </a>
-                                <a href="/admin/listUser/delete/<%=element.encryptId%>">
-                                    <button class="box box-solid box-danger" style="height:30px; width:70px ">Delete</button>
-                                </a>
-                                <% } %>
-                        </td>
-                    </tr>
-                    <% }) %>
-            </tbody>
-        </table>
-    </div>
+  <div class="box-body">
+    <table id="dataTable" class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Gender</th>
+          <th>Handphone</th>
+          <th>Status</th>
+          <th>Show</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% user.forEach((element,i)=>{ %>
+          <tr>
+            <td>
+              <%= i+1 %>
+            </td>
+            <td>
+              <%= element.name %>
+            </td>
+            <td>
+              <%= element.email %>
+            </td>
+            <td>
+              <%= element.roleName %>
+            </td>
+            <td>
+              <%= (element.gender)?(element.gender==1)?"Pria":"Wanita" : ""%>
+            </td>
+            <td>
+              <%= element.handphone %>
+            </td>
+            <td>
+              <%if (element.pending == 1) {%>
+                <span class="label label-warning">
+                  Belum Aktifasi
+                </span>
+      				<%} else{%>
+                <span class="label label-<%= (element.status==null) ? "" : (element.status==1)?"success":"danger" %>">
+                  <%= (element.status==null) ? "" : (element.status==1)?"aktif":"tidak Aktif" %>
+                </span>
+      				<%}%>
+            </td>
+            <td>
+              <a href="/admin/user/show/<%=element.encryptId%>">
+                <button class="box box-solid box-primary">
+                  Show data
+                </button>
+              </a>
+            </td>
+            <td>
+              <% if(element.status==1){ %>
+                <button class="box box-solid box-primary" data-toggle="modal" data-target="#modal-nonaktif">NonAktifkan</button>
+                <% }else if(element.status==0) {%>
+                  <button class="box box-solid box-primary" data-toggle="modal" data-target="#modal-aktif">KirimAktifasi</button>
+                  <%}%>
+            </td>
+          </tr>
+          <div class="modal fade" id="modal-aktif">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">Alert</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Are you sure aktifasi Mr/Mrs
+                    <%=element.name%> ?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                  <a href="/admin/user/aktifasi/<%=element.encryptId%>">
+                    <button type="button" class="btn btn-primary" aria-label="Close">Aktifasi</button>
+                  </a>
+                </div>
+              </div>
+              <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+          </div>
+          <!-- /.modal -->
+          <div class="modal fade" id="modal-nonaktif">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">Alert</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Are you sure non aktif Mr/Mrs
+                    <%=element.name%> ?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                  <a href="/admin/user/nonaktif/<%=element.encryptId%>">
+                    <button type="button" class="btn btn-primary">Aktifasi</button>
+                  </a>
+                </div>
+              </div>
+              <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+          </div>
+          <% }) %>
+      </tbody>
+    </table>
+  </div>
 </div>

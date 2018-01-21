@@ -67,5 +67,8 @@ Router.post('/verification', (req, res) => {
     res.redirect('/admin/login')
   })
 })
+Router.get("*",(req,res)=>{
+  res.redirect('/admin')
+})
 
 module.exports = Router;

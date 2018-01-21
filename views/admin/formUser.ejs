@@ -1,146 +1,191 @@
-<div class="box box-primary">
-        <!-- /.box-header -->
-        <!-- form start -->
-        <form action="" method="post" class="form-horizontal" id="validate-form">
-            <div class="box-body">
-                <div class="col-md-12">
-                    <div class="widget">
-                        <div class="widget-content">
-                            <div class="row">
+		<%
+			var getRole 	  = ''
+			var statusText  = ''
+			var statusLabel = ''
+			var kelamin     = ''
+			if (user) {
+				if (user.role == 0) {
+					getRole = 'Superadmin'
+				} else if (user.role == 1) {
+					getRole = 'Admin'
+				} else if (user.role == 2) {
+					getRole = 'Mitra Jasa'
+				} else if (user.role == 3) {
+					getRole = 'Mitra Jasa VIP'
+				} else if (user.role == 4) {
+					getRole = 'Pencari Jasa'
+				} else if (user.role == 5) {
+					getRole = 'Pencari Jasa VIP'
+				}
 
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="col-md-2 control-label">Nama
-                                            <span class="required">*</span>
-                                        </label>
-                                        <div class="col-md-10">
-                                            <input type="text" name="name" value="<%= (!user)?'':user.name %>" class="form-control"
-                                                required>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label">Kelamin
-                                            <span class="required">*</span>
-                                        </label>
-                                        <div class="col-md-8">
-                                            <select name="gender" class="form-control" required>
-                                                <% if(user){ %>
-                                                    <option <% if (user.gender==1 ) { %> selected
-                                                        <% } %> value="1">Pria</option>
-                                                    <option <% if (user.gender==2 ) { %> selected
-                                                        <% } %> value="2">Wanita</option>
-                                                    <% }else{ %>
-                                                        <option value="1">Pria</option>
-                                                        <option value="2">Wanita</option>
-                                                        <%} %>
-                                            </select>
+				if (user.gender == 1) {
+					kelamin = 'Pria'
+				} else if (user.gender == 2) {
+					kelamin = 'Wanita'
+				}
 
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label">No. HP
-                                            <span class="required">*</span>
-                                        </label>
-                                        <div class="col-md-8">
-                                            <div class="input-group">
-                                                <span class="input-group-addon">+62</span>
-                                                <input type="number" name="handphone" value="<%= (!user)?'':user.handphone %>" class="form-control" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="col-md-2 control-label">Alamat </label>
-                                        <div class="col-md-10">
-                                            <input type="text" name="address" value="<%= (!user)?'':user.address %>" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="col-md-2 control-label">Email
-                                            <span class="required">*</span>
-                                        </label>
-                                        <div class="col-md-10">
-                                            <input type="email" name="email" value="<%= (!user)?'':user.email %>" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label">Status </label>
-                                            <div class="col-md-8">
-                                              <select name="status" class="form-control" required>
-                                                      <% if(user){ %>
-                                                          <option <% if (user.status==0 ) { %> selected
-                                                              <% } %> value="2">Belum Terverifikasi</option>
-                                                          <option <% if (user.status==1 ) { %> selected
-                                                              <% } %> value="3">Terverifikasi</option>
-                                                      <% }else{ %>
-                                                          <option value="0">Belum Terverifikasi</option>
-                                                          <option value="1">Terverifikasi</option>
-                                                      <%} %>
-                                                  </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="col-md-4 control-label">Role
-                                                    <span class="required">*</span>
-                                                </label>
-                                                <div class="col-md-8">
-                                                        <select name="role" class="form-control" required>
-                                                                <% if(user){ %>
-                                                                    <option <% if (user.role==2 ) { %> selected
-                                                                        <% } %> value="2">Mitra Jasa</option>
-                                                                    <option <% if (user.gender==3 ) { %> selected
-                                                                        <% } %> value="3">Mitra Jasa VIP</option>
-                                                                    <option <% if (user.gender==4 ) { %> selected
-                                                                        <% } %> value="4">Pencari Jasa</option>
-                                                                    <option <% if (user.gender==5 ) { %> selected
-                                                                        <% } %> value="4">Pencari Jasa VIP</option>
-                                                                <% }else{ %>
-                                                                    <option value="2">Mitra Jasa</option>
-                                                                    <option value="3">Mitra Jasa VIP</option>
-                                                                    <option value="4">Pencari Jasa</option>
-                                                                    <option value="5">Pencari Jasa VIP</option>
-                                                                <%} %>
-                                                            </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="col-md-2 control-label">Password </label>
-                                        <div class="col-md-10">
-                                            <input type="password" name="password" class="form-control" placeholder="Leave empty for no password-change">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="col-md-2 control-label">Repeat password </label>
-                                        <div class="col-md-10">
-                                            <input type="password" name="password_repeat" class="form-control" placeholder="Leave empty for no password-change">
-                                        </div>
-                                    </div>
-                                </div>
+				if (user.status == 0) {
+					statusText 	= 'Menunggu Aktivasi'
+					statusLabel	= 'warning'
+				} else if (user.status == 1) {
+					statusText 	= 'Aktif'
+					statusLabel	= 'success'
+				}
+			}
+		%>
+					<div class="row">
+		        <div class="col-md-3">
 
-                                <div class="col-md-12">
-                                    <input type="submit" value="Save" class="btn btn-success pull-right">
-                                </div>
+		          <!-- Profile Image -->
+		          <div class="box box-primary">
+		            <div class="box-body box-profile">
+		              <img src="/public/uploads/profile/<%= user.photo %>" onError="this.src='/public/uploads/profile/user.png';" height="392px" width="392px" class="profile-user-img img-responsive img-circle" alt="<%= user.name %>" align="center">
+		              <h3 class="profile-username text-center"><%= user.name %></h3>
+		              <p class="text-muted text-center"><%= getRole %></p>
+		              <!-- <ul class="list-group list-group-unbordered">
+		                <li class="list-group-item">
+		                  <b>Followers</b> <a class="pull-right">1,322</a>
+		                </li>
+		                <li class="list-group-item">
+		                  <b>Following</b> <a class="pull-right">543</a>
+		                </li>
+		                <li class="list-group-item">
+		                  <b>Friends</b> <a class="pull-right">13,287</a>
+		                </li>
+		              </ul> -->
+		            </div>
+		          </div>
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
+		          <!-- About Me -->
+		          <div class="box box-primary">
+		            <div class="box-header with-border">
+		              <h3 class="box-title">Profile Saya</h3>
+		            </div>
+		            <div class="box-body">
 
-            </div>
-        </form>
-    </div>
+									<table class="table no-border">
+				            <tbody>
+											<tr>
+					              <th style="width:20%">Nama</th>
+					              <td><%= user.name %></td>
+					            </tr>
+					            <tr>
+					              <th>Email</th>
+					              <td><%= user.email %></td>
+					            </tr>
+					            <tr>
+					              <th>Kelamin</th>
+					              <td><%= kelamin %></td>
+					            </tr>
+					            <tr>
+					              <th>No. HP</th>
+					              <td><% if (user.handphone != '') { %>+62<% } %><%= user.handphone %></td>
+					            </tr>
+											<tr>
+					              <th>Alamat</th>
+					              <td><%= user.address %></td>
+					            </tr>
+											<tr>
+					              <th>Status</th>
+					              <td><span class="label label-<%= statusLabel %>"><%= statusText %></span></td>
+					            </tr>
+				          	</tbody>
+									</table>
+                  
+		            </div>
+		          </div>
+		        </div>
+
+		        <div class="col-md-9">
+		          <div class="nav-tabs-custom">
+		            <ul class="nav nav-tabs">
+                  <%if(user.role==2||user.role==3){%>
+		              <li class="active"><a href="#penawaran" data-toggle="tab">List Penawaran</a></li>
+                  <li><a href="#perusahan" data-toggle="tab">List Perusahaan</a></li>
+                  <%}%>
+		            </ul>
+                <div class="tab-content">
+                  <%if(user.role==2||user.role==3){%>
+		              <div class="active tab-pane" id="penawaran">
+                    <table id="dataTable" class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th>No</th>
+                          <th>Nama Pencari Jasa</th>
+                          <th>Lokasi</th>
+                          <th>Price</th>
+                          <th>Status</th>
+                          <th>Nama Perusahaan Anda</th>
+                          <th>Tanggal</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>No</td>
+                          <td>Nama Pencari Jasa</td>
+                          <td>Kota</td>
+                          <td>Price</td>
+                          <td>Status</td>
+                          <td>Nama Perusahaan Anda</td>
+                          <td>Tanggal</td>
+                        </tr>
+                      </tbody>
+                    </table>
+		              </div>
+                  <div class="tab-pane" id="perusahan">
+                    <table id="dataTable-2" class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th>No</th>
+                          <th>Nama Perusahaan</th>
+                          <th>Nama Category</th>
+                          <th>Nama Sub Category</th>
+                          <th>Province</th>
+                          <th>City</th>
+                          <th>email</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>No</td>
+                          <td>Nama Perusahaan</td>
+                          <td>Nama Category</td>
+                          <td>Nama Sub Category</td>
+                          <td>Province</td>
+                          <td>City</td>
+                          <td>email</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <%}else if(user.role==4||user.role==5){%>
+                    <table id="dataTable-3" class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th>No</th>
+                          <th>Remark</th>
+                          <th>Provinsi</th>
+                          <th>Kota</th>
+                          <th>Necessites</th>
+                          <th>Status</th>
+                          <th>Tanggal</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>No</td>
+                          <td>Remark</td>
+                          <td>Provinsi</td>
+                          <td>Kota</td>
+                          <td>Necessites</td>
+                          <td>Status</td>
+                          <td>Tanggal</td>
+                        </tr>
+                      </tbody>
+                    </table>
+		              </div>
+                  <%}%>
+		            </div>
+		          </div>
+		        </div>
+		      </div>
