@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use('/public/admin', express.static(process.cwd() + '/public/admin'))
 app.use('/public', express.static(__dirname + '/public'))
-app.use(favicon(__dirname + '/public/assets/img/favicon.ico'))
+//app.use(favicon(__dirname + '/public/assets/img/favicon.ico'))
 app.use(session({ secret: 'surat-izin-2018', cookie: { maxAge: 3600000 } })) //3600000
 
 app.use((req, res, next) => {
