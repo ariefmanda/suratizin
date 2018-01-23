@@ -5,6 +5,7 @@ const algorithm = 'aes192'
 const password  = 'surat-izin-2018'
 
 function encrypt(text) {
+  console.log(text);
   let cipher  = crypto.createCipher(algorithm, password)
   let crypted = cipher.update(text, 'utf8', 'hex')
   crypted += cipher.final('hex');
