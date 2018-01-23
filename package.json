@@ -20,10 +20,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "NODE_ENV=production node app.js",
-    "eksa": "NODE_ENV=development nodemon --inspect app.js",
-    "arief": "NODE_ENV=development nodemon --inspect app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "NODE_ENV=node app.js"
   },
   "repository": {
     "type": "git",
