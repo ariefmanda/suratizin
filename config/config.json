@@ -7,10 +7,10 @@
     "dialect": "postgres"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "suratizin",
-    "host": "127.0.0.1",
+    "username": "aylpsdozwsiqar",
+    "password": "af9ecd7a9b2676543c21ae8168306e5ea816dfe6602c8aba02dd11e503a6ba7f",
+    "database": "d6jtenelf03ohi",
+    "host": "ec2-54-163-236-188.compute-1.amazonaws.com",
     "dialect": "postgres"
   }
 }
