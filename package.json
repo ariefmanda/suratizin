@@ -20,7 +20,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "NODE_ENV=node app.js"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
